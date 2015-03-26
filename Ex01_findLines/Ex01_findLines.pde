@@ -9,10 +9,12 @@ void setup() {
   //Reference colors for emptyroad.jpg
   color refWhite = color(255), refYellow = color(244, 217, 126);
   float white_thr = 75, yellow_thr = 50; //Thresholds for emptyroad.jpg
+  size(800, 600);
 
   // Load "emptyroad.jpg" into img[0]
   // Set size to the width & height of img[0]
   // First color is reference; second color is replacement color
+  img[0] = createImage(width, height, RGB);
   img[1] = findColor(img[0], refWhite, white_thr, refWhite);
   img[2] = findColor(img[0], refYellow, yellow_thr, refYellow);
   img[3] = addImages(img[1], img[2]);
@@ -31,10 +33,11 @@ PImage findColor (PImage img1, color refColor, float thr, color repColor) {
       //Set d to cdist between the current pixel and the reference color
       //if d > thr, set the current pixel in img2 to black
       //else set the current pixel in img2 to the replacement color
-  //Return img2
+  return img1;
 }
 float cdist(color c1, color c2) {
   //Return Euclidean distance between c1 and c2
+  return 2.0/1.0;
 }
 //Print a pixel value to the console; called from mousePressed()
 void showColor(color c) {
@@ -45,9 +48,11 @@ PImage addImages(PImage img1, PImage img2) {
   // Assume img1 and img2 are the same size
   //Create a new image (img3) that is the same width and height as img1 and img2
   // img3 <-- img1 + img2
+  return img1;
 }
 
 void keyPressed() { //Set imgIndex according to key pressed (0, 1, or 2)
+  if (keyPressed) { println("All your base are belong to us"); }
 }
 void mousePressed() { //Print RGB pixel value from the display window
 }
