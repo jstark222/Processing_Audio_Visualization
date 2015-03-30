@@ -1,6 +1,0 @@
-diff a/Ex01_findLines/Ex01_findLines.pde b/Ex01_findLines/Ex01_findLines.pde	(rejected hunks)
-@@ -51,3 +51,4 @@
- }
- void mousePressed() { //Print RGB pixel value from the display window
- }
-+// hellow world!

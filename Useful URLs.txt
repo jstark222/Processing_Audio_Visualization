@@ -1,2 +1,0 @@
-MINIM - Processing API
-	http://code.compartmental.net/tools/minim/quickstart/
