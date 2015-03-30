@@ -1,1 +1,0 @@
-This is for information on how the program works.
