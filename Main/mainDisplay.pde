@@ -1,161 +1,63 @@
-//file for Animation Drawing Multiple effects or images on screen
-ArrayList<ParticleSystem> systems;
+import ddf.minim.*;             //Provides Minim and AudioInput
+import ddf.minim.analysis.*;    //Provides FFT
 
-void setup() {
-  size(640, 360);
-  systems = new ArrayList<ParticleSystem>();
-}
+Minim minim;         //The Minim class contains methods for obtaining and playing audio input
+AudioPlayer audioPlayer;  //Provides a self-contained way of playing a sound file by streaming it from disk. It provides methods for playing & looping the file, as well as methods for setting the position in the file and looping a section of the file.
+FFT fft;             //FFT = Fast Fourier Transform - performs a Fourier Transform on audio data to generate a frequency spetrum
+BeatDetect beat;
+BeatListener beatListener;
 
-void draw() {
-  background(0);
-  for (ParticleSystem ps: systems) {
-    ps.run();
-    ps.addParticle();
-  }
-  if (systems.isEmpty()) {
-    fill(255);
-    textAlign(CENTER);
-    text("click mouse to add particle systems", width/2, height/2);
-  }
-}
-
-void mousePressed() {
-  systems.add(new ParticleSystem(1, new PVector(mouseX, mouseY)));
-}
+int kickCounter = 0;
+int hatCounter = 0;
+int snareCounter = 0;
 
 
-
-// An ArrayList is used to manage the list of Particles
-
-class ParticleSystem {
-
-  ArrayList<Particle> particles;    // An arraylist for all the particles
-  PVector origin;                   // An origin point for where particles are birthed
-
-  ParticleSystem(int num, PVector v) {
-    particles = new ArrayList<Particle>();   // Initialize the arraylist
-    origin = v.get();                        // Store the origin point
-    for (int i = 0; i < num; i++) {
-      particles.add(new Particle(origin));    // Add "num" amount of particles to the arraylist
-    }
-  }
-
-
-  void run() {
-    // Cycle through the ArrayList backwards, because we are deleting while iterating
-    for (int i = particles.size()-1; i >= 0; i--) {
-      Particle p = particles.get(i);
-      p.run();
-      if (p.isDead()) {
-        particles.remove(i);
-      }
-    }
-  }
-
-  void addParticle() {
-    Particle p;
-    // Add either a Particle or CrazyParticle to the system
-    if (int(random(0, 2)) == 0) {
-      p = new Particle(origin);
-    } 
-    else {
-      p = new CrazyParticle(origin);
-    }
-    particles.add(p);
-  }
-
-  void addParticle(Particle p) {
-    particles.add(p);
-  }
-
-  // A method to test if the particle system still has particles
-  boolean dead() {
-    return particles.isEmpty();
-  }
+void mainDisplayInit(String fileName) {  
+  minim = new Minim(this);
+  audioPlayer = minim.loadFile(fileName);  //This method functions much the same way as loadImage()
+  audioPlayer.play();  //Self-evident, but the play() method simply starts playing the loaded file
+  beat = new BeatDetect(audioPlayer.bufferSize(), audioPlayer.sampleRate());
+  beat.setSensitivity(500);
+  beatListener = new BeatListener(beat, audioPlayer);
 }
 
 
-
-// A subclass of Particle
-
-class CrazyParticle extends Particle {
-
-  // Just adding one new variable to a CrazyParticle
-  // It inherits all other fields from "Particle", and we don't have to retype them!
-  float theta;
-
-  // The CrazyParticle constructor can call the parent class (super class) constructor
-  CrazyParticle(PVector l) {
-    // "super" means do everything from the constructor in Particle
-    super(l);
-    // One more line of code to deal with the new variable, theta
-    theta = 0.0;
-  }
-
-  // Notice we don't have the method run() here; it is inherited from Particle
-
-  // This update() method overrides the parent class update() method
-  void update() {
-    super.update();
-    // Increment rotation based on horizontal velocity
-    float theta_vel = (velocity.x * velocity.mag()) / 10.0f;
-    theta += theta_vel;
-  }
-
-  // This display() method overrides the parent class display() method
-  void display() {
-    // Render the ellipse just like in a regular particle
-    super.display();
-    // Then add a rotating line
-    pushMatrix();
-    translate(location.x,location.y);
-    rotate(theta);
-    stroke(255,lifespan);
-    line(0,0,25,0);
-    popMatrix();
-  }
-
+void mainDisplayDraw() {
+  beat.detect(player.mix);
 }
 
 
+void triggers() {
+  
+  if (beat.isKick()) { kickCounter++; } //Call function
+  if (beat.isHat()) { hatCounter++; } //Call function
+  if (beat.isSnare()) { snareCounter++; } //Call function
+  if (kickCounter % 5 == 0) {} //Call function
+  if (hatCounter % 5 == 0) {} //Call function
+  if (snareCounter % 5 == 0) {} //Call function
+  
+}
 
-// A simple Particle class
 
-class Particle {
-  PVector location;
-  PVector velocity;
-  PVector acceleration;
-  float lifespan;
-
-  Particle(PVector l) {
-    acceleration = new PVector(0,0.05);
-    velocity = new PVector(random(-1,1),random(-2,0));
-    location = l.get();
-    lifespan = 255.0;
+class BeatListener implements AudioListener
+{
+  private BeatDetect beat;
+  private AudioPlayer source;
+  
+  BeatListener(BeatDetect beat, AudioPlayer source)
+  {
+    this.source = source;
+    this.source.addListener(this);
+    this.beat = beat;
   }
-
-  void run() {
-    update();
-    display();
+  
+  void samples(float[] samps)
+  {
+    beat.detect(source.mix);
   }
-
-  // Method to update location
-  void update() {
-    velocity.add(acceleration);
-    location.add(velocity);
-    lifespan -= 2.0;
+  
+  void samples(float[] sampsL, float[] sampsR)
+  {
+    beat.detect(source.mix);
   }
-
-  // Method to display
-  void display() {
-    stroke(255,lifespan);
-    fill(255,lifespan);
-    ellipse(location.x,location.y,8,8);
-  }
-
-  // Is the particle still useful?
-  boolean isDead() {
-    return (lifespan < 0.0);
-  }
-
 }
