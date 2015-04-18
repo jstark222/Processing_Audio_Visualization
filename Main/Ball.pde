@@ -46,6 +46,40 @@ class Ball{
     xspeed = valx;
     yspeed = valy;
   }
-    
+  
+  
+  void setFast(float speed){
+    if (xspeed < 0 && yspeed < 0 && speed < 0){
+      xspeed = speed;
+      yspeed = speed;
+    }
+    else if (xspeed < 0 && yspeed < 0 && speed > 0){
+      xspeed = -speed;
+      yspeed = -speed;
+    }
+    else if (xspeed < 0 && yspeed > 0 && speed < 0){
+      xspeed = speed;
+      yspeed = -speed;
+    }
+    else if (xspeed < 0 && yspeed > 0 && speed > 0){
+      xspeed = -speed;
+      yspeed = speed;
+    }
+    else if (xspeed > 0 && yspeed < 0 && speed < 0){
+      xspeed = -speed;
+      yspeed = speed;
+    }
+    else if (xspeed > 0 && yspeed < 0 && speed > 0){
+      xspeed = speed;
+      yspeed = -speed;
+    }
+    else if (xspeed > 0 && yspeed > 0 && speed < 0){
+      xspeed = -speed;
+      yspeed = -speed;
+    }
+    else if (xspeed > 0 && yspeed > 0 && speed > 0){
+      xspeed = speed;
+      yspeed = speed;
+    }
+  }
 }
-    
