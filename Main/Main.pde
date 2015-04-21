@@ -1,18 +1,24 @@
 //Main file to launch all other code
+import g4p_controls.*;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.*;
+import javax.swing.SwingUtilities;
 
+JFileChooser file_chooser = new JFileChooser();
 String fileName = "..\\..\\Music\\The Times.mp3";  //The default location the loadFile() method looks is in the sketch's data folder; this moves up two directories and into the Music folder; this will error if your directory structure is different from the one on GitHub.
 int mode = 1;
 Boolean initTrigger = true;
 
 void setup() {
-  size(600, 400);
+  size(600, 400, JAVA2D);
 }
 
 
 void draw() {
   switch(mode) {
     case 1:
-      
+      createGUI();
       //addGui
       break;
     case 2:
@@ -33,19 +39,6 @@ void draw() {
 }
 
 
-void keyPressed() {
-  switch(key) {
-    case '1':
-      mode = 1;
-      break;
-    case '2':
-      mode = 2;
-      break;
-    case '3':
-      mode = 3;
-      break;
-  }
-}
 
 /*
 void keyPressed() {
