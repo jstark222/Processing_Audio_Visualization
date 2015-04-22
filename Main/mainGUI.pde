@@ -14,6 +14,20 @@
  * =========================================================
  */
 
+import g4p_controls.*;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.*;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileFilter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+
+
+
+JFileChooser file_chooser = new JFileChooser();
+
 public void playButton_click(GButton source, GEvent event) { //_CODE_:playButton:471477:
   println("playButton - GButton >> GEvent." + event + " @ " + millis());
   
@@ -94,6 +108,8 @@ void keyPressed() {
   }
 }
 
+
+//FILE OPENER
 public void openFile()
 {
   try
@@ -103,12 +119,16 @@ public void openFile()
       public void run()
       {
         file_chooser.setDialogTitle("Choose a Song");
-        file_chooser.setAcceptAllFileFilterUsed(true);
+        file_chooser.setAcceptAllFileFilterUsed(false);
+        
         int return_val = file_chooser.showOpenDialog(null);
-        if ( return_val == JFileChooser.APPROVE_OPTION )
+        if ( return_val == JFileChooser.APPROVE_OPTION)
         {
           File file = file_chooser.getSelectedFile();
+        
+          
           fileName = file.getAbsolutePath();
+          //checkType(fileName);
         }
         else
         {
@@ -123,3 +143,15 @@ public void openFile()
     e.printStackTrace();
   }
 }
+
+/*
+boolean checkType(String type){
+    Path source = Paths.get(type);
+    println(Files.probeContentType(source).toString());
+    return true;
+  
+}
+*/
+//FILE FILTER
+/* MusicFilter.java is used by FileChooserDemo2.java. */
+//FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
