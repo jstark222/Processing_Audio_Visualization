@@ -33,7 +33,6 @@ void ballsetspeed(){
       b2.add((int) random(0,num_show));
     }
     for(int i = 0; i < b2.size(); i++){
-       //b2[i]= b[(int) random(0,num_show)];
        b[b2.get(i)].setFast(newSpeed);
     }
    

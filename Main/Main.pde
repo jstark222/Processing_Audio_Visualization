@@ -7,17 +7,19 @@ int mode = 1;
 Boolean initTrigger = true;
 
 void setup() {
-  size(600, 400, JAVA2D);
+  size(800, 600, JAVA2D);
+  createGUI();
 }
 
 
 void draw() {
   switch(mode) {
     case 1:
-      createGUI();
+      enableGui();
       //addGui
       break;
     case 2:
+      disableGui();
       if (initTrigger) {
         initTrigger = false;
         mainDisplayInit(fileName);

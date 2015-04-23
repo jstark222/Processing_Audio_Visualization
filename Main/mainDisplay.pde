@@ -1,5 +1,6 @@
 import ddf.minim.*;             //Provides Minim and AudioInput
 import ddf.minim.analysis.*;    //Provides FFT
+import g4p_controls.*;
 
 Minim minim;         //The Minim class contains methods for obtaining and playing audio input
 AudioPlayer player;  //Provides a self-contained way of playing a sound file by streaming it from disk. It provides methods for playing & looping the file, as well as methods for setting the position in the file and looping a section of the file.
@@ -14,21 +15,29 @@ int snareCounter = 0;
 
 void mainDisplayInit(String fileName) {  
   minim = new Minim(this);
-  player = minim.loadFile(fileName);  //This method functions much the same way as loadImage()
-  player.play();  //Self-evident, but the play() method simply starts playing the loaded file
+  loadSong();
   beat = new BeatDetect(player.bufferSize(), player.sampleRate());
   beat.setSensitivity(50);
   beatListener = new BeatListener(beat, player);
   ballinit();
+  drawSongSlider();
 }
 
 
 void mainDisplayDraw() {
   beat.detect(player.mix);
   triggers();
+  slider1.setTrackOffset(map(player.position(), 0, player.length(), 0, 10.0));
   balldraw();
 }
 
+
+void loadSong()
+{
+  player = minim.loadFile(fileName);  //This method functions much the same way as loadImage()
+   
+  
+}
 
 void triggers() {
   
@@ -40,6 +49,7 @@ void triggers() {
   if (snareCounter % 5 == 0) {} //Call function
   
 }
+
 
 
 class BeatListener implements AudioListener
