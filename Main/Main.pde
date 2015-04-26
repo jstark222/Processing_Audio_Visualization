@@ -10,25 +10,26 @@ void setup() {
   size(800, 600, JAVA2D);
   createGUI();
   enableGui();
+  
+  //if (initTrigger) {
+    //initTrigger = false;
+    mainDisplayInit(fileName);
+  //}
 }
 
 
 void draw() {
   switch(mode) {
     case 1:
-    if (initTrigger) {
-        initTrigger = false;
-        mainDisplayInit(fileName);
-      }
+    
       //addGui
       break;
+      
     case 2:
       //disableGui();
-      
       { mainDisplayDraw(); }
-      
-      //visualStuff
       break;
+      
     case 3:
       if (initTrigger) { initTrigger = false; }
       else { }

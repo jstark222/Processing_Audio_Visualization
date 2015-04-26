@@ -4,37 +4,68 @@ import javax.swing.JFileChooser;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
+import java.awt.event.*;
+
+import java.awt.BorderLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
+
+
+String sensitivityInput = "50";
+JPopupMenu popup;
+JMenuItem menuItem;
+JComponent jcom;
 
 
 JFileChooser file_chooser = new JFileChooser();
 
 public void playButton_click(GButton source, GEvent event) { //_CODE_:playButton:471477:
-  println("playButton - GButton >> GEvent." + event + " @ " + millis());
-  mode = 2;
-  if (!player.isPlaying()) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+  //println("playButton - GButton >> GEvent." + event + " @ " + millis());
+  if (source == playButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    mode = 2;
+    if (!player.isPlaying()) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+  }
 } //_CODE_:playButton:471477:
 
 public void stopButton_click(GButton source, GEvent event) { //_CODE_:stopButton:485553:
   //println("stopButton - GButton >> GEvent." + event + " @ " + millis());
-  player.pause();
-  //stopButton.setVisible(false);
+  if (source == stopButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    player.pause();
+    //stopButton.setVisible(false);
+  }
 } //_CODE_:stopButton:485553:
 
 public void songButton_click(GButton source, GEvent event) { //_CODE_:songButton:902917:
   //println("songButton - GButton >> GEvent." + event + " @ " + millis());
-  if (player.isPlaying()) player.pause();
-  mode = 1;
-  openFile();
+  if (source == songButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    if (player.isPlaying()) player.pause();
+    mode = 1;
+    openFile();
+  }
  
 } //_CODE_:songButton:902917:
 
 public void optionsButton_click(GButton source, GEvent event) { //_CODE_:optionsButton:431186:
   //println("optionsButton - GButton >> GEvent." + event + " @ " + millis());
+  if (source == optionsButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+  }
 } //_CODE_:optionsButton:431186:
 
 public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:895819:
   //println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
-  player.cue(int(map(slider1.getTrackOffset(), 0, 10, 0, player.length())));
+  if (source == slider1  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    player.cue(int(map(slider1.getTrackOffset(), 0, 10, 0, player.length())));
+  }
   
   
 } //_CODE_:slider1:895819:
@@ -70,27 +101,30 @@ public void createGUI(){
   G4P.setCursor(ARROW);
   if(frame != null)
     frame.setTitle("Sketch Window");
+    
   playButton = new GButton(this, 275, 530, 100, 30);
   playButton.setText("Play");
   playButton.setTextBold();
   playButton.addEventHandler(this, "playButton_click");
   playButton.fireAllEvents(true);
+  
   stopButton = new GButton(this, 425, 530, 100, 30);
   stopButton.setText("Stop");
   stopButton.setTextBold();
   stopButton.addEventHandler(this, "stopButton_click");
   stopButton.fireAllEvents(true);
+  
   songButton = new GButton(this, 125, 530, 100, 30);
   songButton.setText("Song");
   songButton.setTextBold();
   songButton.addEventHandler(this, "songButton_click");
   songButton.fireAllEvents(true);
+  
   optionsButton = new GButton(this, 575, 530, 100, 30);
   optionsButton.setText("Options");
   optionsButton.setTextBold();
   optionsButton.addEventHandler(this, "optionsButton_click");
   optionsButton.fireAllEvents(true);
-  
 }
 
 void drawSongSlider(){
@@ -111,8 +145,46 @@ GButton optionsButton;
 GSlider slider1; 
 
 
+void mousePressed() {
+  if (mouseButton == RIGHT) {
+    JFrame frame = new JFrame("Popup Example");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-/*void keyPressed() {
+
+    final JTextField textField = new JTextField();
+    //frame.add(textField, BorderLayout.NORTH);
+    
+    this.add(textField, BorderLayout.SOUTH);
+
+    final JPopupMenu popup = new JPopupMenu();
+    JMenuItem menuItem1 = new JMenuItem("Show/Hide Song");
+    popup.add(menuItem1);
+
+    JMenuItem menuItem2 = new JMenuItem("Show/Hide Play");
+    popup.add(menuItem2);
+    
+    popup.show(textField, mouseX, mouseY);
+
+    
+    //ActionListener actionListener = new ActionListener() {
+    //  public void actionPerformed(ActionEvent actionEvent) {
+    //    popup.show(textField, 10,10);
+    //  }
+    //};
+    
+    /*KeyStroke keystroke =
+      KeyStroke.getKeyStroke(KeyEvent.VK_PERIOD, 0, false);
+    textField.registerKeyboardAction(actionListener, keystroke,
+      JComponent.WHEN_FOCUSED);
+
+    frame.setSize(250, 150);
+    frame.setVisible(true);*/
+  }
+
+}
+
+
+void keyPressed() {
   switch(key) {
     case '1':
       mode = 1;
@@ -123,8 +195,13 @@ GSlider slider1;
     case '3':
       mode = 3;
       break;
+      
+    case 's':
+      sensitivityInput = "999";
+      beat.setSensitivity(int(sensitivityInput));
+      println("Sensitivity is: " + sensitivityInput);
   }
-}*/
+}
 
 
 //FILE OPENER
