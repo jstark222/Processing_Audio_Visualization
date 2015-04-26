@@ -9,22 +9,23 @@ Boolean initTrigger = true;
 void setup() {
   size(800, 600, JAVA2D);
   createGUI();
+  enableGui();
 }
 
 
 void draw() {
   switch(mode) {
     case 1:
-      enableGui();
-      //addGui
-      break;
-    case 2:
-      disableGui();
-      if (initTrigger) {
+    if (initTrigger) {
         initTrigger = false;
         mainDisplayInit(fileName);
       }
-      else { mainDisplayDraw(); }
+      //addGui
+      break;
+    case 2:
+      //disableGui();
+      
+      { mainDisplayDraw(); }
       
       //visualStuff
       break;

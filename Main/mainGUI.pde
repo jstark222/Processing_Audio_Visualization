@@ -29,18 +29,18 @@ JFileChooser file_chooser = new JFileChooser();
 public void playButton_click(GButton source, GEvent event) { //_CODE_:playButton:471477:
   println("playButton - GButton >> GEvent." + event + " @ " + millis());
   mode = 2;
-  player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+  if (!player.isPlaying()) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
 } //_CODE_:playButton:471477:
 
 public void stopButton_click(GButton source, GEvent event) { //_CODE_:stopButton:485553:
   //println("stopButton - GButton >> GEvent." + event + " @ " + millis());
   player.pause();
-  stopButton.setVisible(false);
+  //stopButton.setVisible(false);
 } //_CODE_:stopButton:485553:
 
 public void songButton_click(GButton source, GEvent event) { //_CODE_:songButton:902917:
   //println("songButton - GButton >> GEvent." + event + " @ " + millis());
-  player.pause();
+  if (player.isPlaying()) player.pause();
   mode = 1;
   openFile();
  
