@@ -1,27 +1,9 @@
-/* =========================================================
- * ====                   WARNING                        ===
- * =========================================================
- * The code in this tab has been generated from the GUI form
- * designer and care should be taken when editing this file.
- * Only add/edit code inside the event handlers i.e. only
- * use lines between the matching comment tags. e.g.
-
- void myBtnEvents(GButton button) { //_CODE_:button1:12356:
-     // It is safe to enter your event code here  
- } //_CODE_:button1:12356:
- 
- * Do not rename this tab!
- * =========================================================
- */
-
 import g4p_controls.*;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
-
-
 
 
 JFileChooser file_chooser = new JFileChooser();
@@ -92,18 +74,22 @@ public void createGUI(){
   playButton.setText("Play");
   playButton.setTextBold();
   playButton.addEventHandler(this, "playButton_click");
+  playButton.fireAllEvents(true);
   stopButton = new GButton(this, 425, 530, 100, 30);
   stopButton.setText("Stop");
   stopButton.setTextBold();
   stopButton.addEventHandler(this, "stopButton_click");
+  stopButton.fireAllEvents(true);
   songButton = new GButton(this, 125, 530, 100, 30);
   songButton.setText("Song");
   songButton.setTextBold();
   songButton.addEventHandler(this, "songButton_click");
+  songButton.fireAllEvents(true);
   optionsButton = new GButton(this, 575, 530, 100, 30);
   optionsButton.setText("Options");
   optionsButton.setTextBold();
   optionsButton.addEventHandler(this, "optionsButton_click");
+  optionsButton.fireAllEvents(true);
   
 }
 
@@ -126,7 +112,7 @@ GSlider slider1;
 
 
 
-void keyPressed() {
+/*void keyPressed() {
   switch(key) {
     case '1':
       mode = 1;
@@ -138,7 +124,7 @@ void keyPressed() {
       mode = 3;
       break;
   }
-}
+}*/
 
 
 //FILE OPENER

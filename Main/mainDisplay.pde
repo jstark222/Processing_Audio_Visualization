@@ -41,7 +41,7 @@ void loadSong()
 
 void triggers() {
   
-  if (beat.isKick()) { kickCounter++; ballsetspeed(); println("asdadf");} //Call function
+  if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; } //Call function
   if (beat.isSnare()) { snareCounter++; } //Call function
   if (kickCounter % 5 == 0) {} //Call function
