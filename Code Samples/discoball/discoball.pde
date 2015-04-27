@@ -1,6 +1,8 @@
 int ptsW, ptsH;
 
 PImage img;
+PImage img2;
+float spin = 0.0;;
 
 int numPointsW;
 int numPointsH_2pi; 
@@ -12,10 +14,12 @@ float[] coorZ;
 float[] multXZ;
 
 void setup() {
-  size(640, 360, P3D);
+  size(800, 600, P3D);
   background(0);
   noStroke();
-  img=loadImage("harbor.jpg");
+  img2= loadImage("background.jpg");
+  img2.resize(800, 600);
+  img=loadImage("mult.jpg");
   ptsW=30;
   ptsH=30;
   // Parameters below are the number of vertices around the width and height
@@ -37,16 +41,30 @@ void keyPressed() {
 
 void draw() {
   background(0);
-  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
-         height/2+map(mouseY, 0, height, -height, height),
-         height/2/tan(PI*30.0 / 180.0), 
-         width, height/2.0, 0, 
-         0, 1, 0);
-
-  pushMatrix();
-  translate(width/2, height/2, 0);
-  textureSphere(200, 200, 200, img);
-  popMatrix();
+  defineLights();
+  if(spin == 800)
+  {
+    spin = 0;
+  }
+  spin = spin + 2;
+  image(img2, spin-800, 0);
+  image(img2, spin, 0);
+ for (int x = 0; x <= width; x += 60) {
+    for (int y = 0; y <= height; y += 60) {
+      pushMatrix();
+      translate(width/2, height/2, 0);
+      //translate(x, y);
+      rotateY(map(mouseX, 0, width, 0, PI));
+      //rotateX(map(mouseY, 0, height, 0, PI));
+       textureSphere(200, 200, 200, img);
+      popMatrix();
+     
+    }
+  }
+  //pushMatrix();
+  //translate(width/2, height/2, 0);
+  //textureSphere(200, 200, 200, img);
+  //popMatrix();
 }
 
 void initializeSphere(int numPtsW, int numPtsH_2pi) {
@@ -113,3 +131,22 @@ void textureSphere(float rx, float ry, float rz, PImage t) {
   }
   endShape();
 }
+
+
+void defineLights() {
+  // Orange point light on the right
+  pointLight(255, 255, 255,   // Color
+             200, -150, 0); // Position
+
+  // Blue directional light from the left
+  directionalLight(255, 255, 255, // Color
+                   0, 1, -1);    // The x-, y-, z-axis direction
+
+  // Yellow spotlight from the front
+  spotLight(255, 255, 255,  // Color
+            0, 40, 200,     // Position
+            0, -0.5, -1,  // Direction
+            PI / 2, 2);     // Angle, concentration
+}
+
+
