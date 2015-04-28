@@ -17,9 +17,9 @@ void setup() {
   size(800, 600, P3D);
   background(0);
   noStroke();
-  img2= loadImage("background.jpg");
-  img2.resize(800, 600);
-  img=loadImage("mult.jpg");
+  //img2= loadImage("lights.jpg");
+  //img2.resize(800, 600);
+  img=loadImage("ugh.jpg");
   ptsW=30;
   ptsH=30;
   // Parameters below are the number of vertices around the width and height
@@ -46,22 +46,24 @@ void draw() {
   {
     spin = 0;
   }
-  spin = spin + 2;
-  image(img2, spin-800, 0);
-  image(img2, spin, 0);
+  spin = spin + 3;
+  //image(img2, spin-800, 0);
+  //image(img2, spin, 0);
  for (int x = 0; x <= width; x += 60) {
     for (int y = 0; y <= height; y += 60) {
       pushMatrix();
       translate(width/2, height/2, 0);
       //translate(x, y);
-      rotateY(map(mouseX, 0, width, 0, PI));
-      //rotateX(map(mouseY, 0, height, 0, PI));
-       textureSphere(200, 200, 200, img);
+      rotateY(map(-spin, 0, width, 0, PI));
+      //rotateX(map(-30, 0, height, 0, PI));
+       textureSphere(110, 110, 110, img);
       popMatrix();
      
     }
   }
-  //pushMatrix();
+  spotLight(51, 102, 126, 80, 20, 40, -1, 0, 0, PI/2, 2);
+  translate(20, 50, 0);
+  sphere(30);
   //translate(width/2, height/2, 0);
   //textureSphere(200, 200, 200, img);
   //popMatrix();
