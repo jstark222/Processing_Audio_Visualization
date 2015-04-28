@@ -7,6 +7,7 @@ float spin = 0.0;;
 int numPointsW;
 int numPointsH_2pi; 
 int numPointsH;
+int input = 8;
 
 float[] coorX;
 float[] coorY;
@@ -17,9 +18,9 @@ void setup() {
   size(800, 600, P3D);
   background(0);
   noStroke();
-  //img2= loadImage("lights.jpg");
+  //img2= loadImage("yellow.jpg");
   //img2.resize(800, 600);
-  img=loadImage("ugh.jpg");
+  img=loadImage("moz2.jpg");
   ptsW=30;
   ptsH=30;
   // Parameters below are the number of vertices around the width and height
@@ -46,9 +47,11 @@ void draw() {
   {
     spin = 0;
   }
-  spin = spin + 3;
+  spin = spin + input;
   //image(img2, spin-800, 0);
   //image(img2, spin, 0);
+  lightSpecular(155, 155, 155);
+  directionalLight(10, 10, 10, 0, 0, -1);
  for (int x = 0; x <= width; x += 60) {
     for (int y = 0; y <= height; y += 60) {
       pushMatrix();
@@ -56,14 +59,13 @@ void draw() {
       //translate(x, y);
       rotateY(map(-spin, 0, width, 0, PI));
       //rotateX(map(-30, 0, height, 0, PI));
+      
        textureSphere(110, 110, 110, img);
       popMatrix();
      
     }
   }
-  spotLight(51, 102, 126, 80, 20, 40, -1, 0, 0, PI/2, 2);
-  translate(20, 50, 0);
-  sphere(30);
+
   //translate(width/2, height/2, 0);
   //textureSphere(200, 200, 200, img);
   //popMatrix();
