@@ -11,6 +11,8 @@ BeatListener beatListener;
 int kickCounter = 0;
 int hatCounter = 0;
 int snareCounter = 0;
+int input = 1;
+int tempo = 0;
 
 
 void mainDisplayInit(String fileName) {  
@@ -20,7 +22,10 @@ void mainDisplayInit(String fileName) {
   beat.setSensitivity(50);
   beatListener = new BeatListener(beat, player);
   ballinit();
+  DiscoInit();
+  
   drawSongSlider();
+  
 }
 
 
@@ -28,7 +33,44 @@ void mainDisplayDraw() {
   beat.detect(player.mix);
   triggers();
   slider1.setTrackOffset(map(player.position(), 0, player.length(), 0, 10.0));
+  
+  /*
+  switch(effect)
+  {
+    case 0:
+      
+      break;
+    case 1:
+       rect(0,0,width,height);
+       balldraw();
+      break;
+    case 2:
+      //switchRenderer("P3D");
+      BackgroundDiscoDraw();
+      DiscoDraw();
+      break;
+    case 3:
+      //switchRenderer("P3D");
+      BackgroundDiscoDraw();
+      balldraw();
+      DiscoDraw();
+      break;
+    case 4:
+    
+      break;
+    case 5:
+    
+    
+      break;
+    case 6:
+    
+      break;
+  } 
+ */ 
+  BackgroundDiscoDraw();
+  //rect(0,0,width,height);
   balldraw();
+  DiscoDraw();
 }
 
 
@@ -41,10 +83,14 @@ void loadSong()
 
 void triggers() {
   
-  if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
+  if (beat.isKick()) { kickCounter++; ballsetspeed(); tempo++; } //Call function
   if (beat.isHat()) { hatCounter++; } //Call function
   if (beat.isSnare()) { snareCounter++; } //Call function
-  if (kickCounter % 5 == 0) {} //Call function
+  if (kickCounter % 5 == 0) {
+      tempo = input;
+      tempo = 0;
+      
+  } //Call function
   if (hatCounter % 5 == 0) {} //Call function
   if (snareCounter % 5 == 0) {} //Call function
   

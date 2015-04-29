@@ -7,7 +7,7 @@ float spin = 0.0;
 int numPointsW;
 int numPointsH_2pi; 
 int numPointsH;
-int input = 1;
+
 int yheight = 0;
 int reset = 800;
 int slowspin = 0;
@@ -17,8 +17,8 @@ float[] coorY;
 float[] coorZ;
 float[] multXZ;
 
-void setup() {
-  size(800, 600, P3D);
+void DiscoInit() {
+  //size(800, 600, P3D);
   background(0);
   noStroke();
   img2= loadImage("lights.jpg");
@@ -30,10 +30,13 @@ void setup() {
   initializeSphere(ptsW, ptsH);
 }
 
+void BackgroundDiscoDraw(){
+    image(img2, slowspin-800, 0);
+    image(img2, slowspin, 0);
+}
 
-
-void draw() {
-  background(0);
+void DiscoDraw() {
+  //background(0);
  
   if(spin >= 800)
   {
@@ -48,8 +51,7 @@ void draw() {
   spin = spin + input;
   slowspin = slowspin + input + (input/2);
   
-  image(img2, slowspin-800, 0);
-  image(img2, slowspin, 0);
+
   
   yheight++;
  

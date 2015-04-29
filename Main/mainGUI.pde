@@ -195,7 +195,15 @@ void keyPressed() {
     case '3':
       mode = 3;
       break;
-      
+    case 'q':
+      effect = 1;
+      break;
+    case 'w':
+      effect = 2;
+      break;
+    case 'e':
+      effect = 3;
+      break;  
     case 's':
       sensitivityInput = "999";
       beat.setSensitivity(int(sensitivityInput));
