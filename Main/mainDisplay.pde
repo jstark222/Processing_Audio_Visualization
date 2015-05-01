@@ -34,26 +34,25 @@ void mainDisplayDraw() {
   triggers();
   slider1.setTrackOffset(map(player.position(), 0, player.length(), 0, 10.0));
   
-  /*
-  switch(effect)
+  
+  switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
   {
     case 0:
-      
+      BackgroundDiscoDraw();
       break;
     case 1:
        rect(0,0,width,height);
        balldraw();
       break;
     case 2:
-      //switchRenderer("P3D");
-      BackgroundDiscoDraw();
-      DiscoDraw();
-      break;
-    case 3:
-      //switchRenderer("P3D");
       BackgroundDiscoDraw();
       balldraw();
-      DiscoDraw();
+      break;
+    case 3:
+     
+      BackgroundDiscoDraw();
+      balldraw();
+     
       break;
     case 4:
     
@@ -66,11 +65,8 @@ void mainDisplayDraw() {
     
       break;
   } 
- */ 
-  BackgroundDiscoDraw();
-  //rect(0,0,width,height);
-  balldraw();
-  DiscoDraw();
+ 
+
 }
 
 
