@@ -72,7 +72,7 @@ void mainDisplayDraw() {
 
 void loadSong()
 {
-  player = minim.loadFile(fileName);  //This method functions much the same way as loadImage()
+  player = minim.loadFile(fileName.get(currentSong));  //This method functions much the same way as loadImage()
    
   
 }

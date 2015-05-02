@@ -106,11 +106,21 @@ class MenuActionListener implements ActionListener {
     }
     else if(e.getActionCommand() == "Play Next Song")
     {
-      //Place Skip Code Here
+      if (currentSong < fileName.size()  &&  fileName.size() > 1) {
+        currentSong++;
+        player.pause();
+        loadSong();
+        player.play();
+      }
     }
     else if(e.getActionCommand() == "Play Previous Song")
     {
-      //Place Previous Code Here
+      if (currentSong > 0) {
+        currentSong--;
+        player.pause();
+        loadSong();
+        player.play();
+      }
     }
     else if(e.getActionCommand() == "Exit")
     {
@@ -308,12 +318,17 @@ public void openFile()
           File file = file_chooser.getSelectedFile();
           
           
-          fileName = file.getAbsolutePath();
+          if (initSongSelected) {
+            fileName.add(file.getAbsolutePath());
+            currentSong = fileName.size() - 1;
+          }
+          else { fileName.set(0, file.getAbsolutePath()); initSongSelected = true; }
+          
           loadSong();
         }
         else
         {
-          fileName = "none";
+          //fileName = "none";  //Seems like it would crash our program if "none" ever got passed to player
         }
       }
     }
