@@ -25,9 +25,9 @@ class Ball{
     this.bounce();
   }
   void bounce(){
-    if (xpos> width -diameter/2) xspeed = -xspeed;
+    if (xpos> w -diameter/2) xspeed = -xspeed;
     else if (xpos < diameter/2) xspeed = -xspeed;
-    if (ypos > height - diameter/2) yspeed = -yspeed;
+    if (ypos > h - diameter/2) yspeed = -yspeed;
     else if (ypos < diameter/2) yspeed = -yspeed;
   }
   

@@ -48,7 +48,7 @@ void mainDisplayDraw() {
       balldraw();
       break;
     case 1:
-       rect(0,0,width,height);
+       rect(0,0,w,h);
        balldraw();
       break;
     case 2:

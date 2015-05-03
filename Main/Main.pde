@@ -35,7 +35,7 @@ void draw() {
         colorMode(HSB);
           fill(hueVal, 255, 255);  //Provides a rainbow effect to the displayed text; this was implemented to prevent text from becoming unreadable against any BG
           if (initSongSelected) { text(songName, 0, 12);  //Display the name of the current song in the top left corner of the window
-          text("Queue: " + fileName.size(), width - 80, 12); }  //Display the number of songs in the queue in the top right hand corner of the window
+          text("Queue: " + fileName.size(), w - 80, 12); }  //Display the number of songs in the queue in the top right hand corner of the window
           noFill();
         colorMode(RGB);
         hueVal = (hueVal > 255) ? 0 : hueVal + 1;
