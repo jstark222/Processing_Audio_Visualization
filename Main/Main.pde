@@ -8,13 +8,15 @@ String songName;
 int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, initSongSelected = false;
 int effect = 0;
-int w = 800;
-int h = 600;
+int w = 1200;
+int h = 800;
 
 
 public JFrame new_window;
 
 void setup() {
+  //w = displayWidth;
+  //h = displayHeight;
   size(w, h, JAVA2D);
   textSize(16);
   fileName.add("..\\..\\Music\\NepentheOriginal.mp3");

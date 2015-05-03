@@ -206,7 +206,7 @@ public void createGUI(){
 }
 
 void drawSongSlider(){
-  slider1 = new GSlider(this, 2, 550, 800, 53, 10.0);
+  slider1 = new GSlider(this, 2, (h - 50), width, 53, 10.0);
   slider1.setShowLimits(false);
   slider1.setTextOrientation(G4P.ORIENT_LEFT);
   slider1.setLimits(0.0, 0.0, 1.0);
