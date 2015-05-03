@@ -12,6 +12,7 @@ int kickCounter = 0;
 int hatCounter = 0;
 int snareCounter = 0;
 boolean blackwhiteSwitch = true;
+float addme = 0;
 
 
 
@@ -32,8 +33,10 @@ void mainDisplayInit(String fileName) {
 void mainDisplayDraw() {
   beat.detect(player.mix);
   triggers();
-  slider1.setTrackOffset(map(player.position(), 0, player.length(), 0, 10.0));
   
+  slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
+ 
+
   
   switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
   {
