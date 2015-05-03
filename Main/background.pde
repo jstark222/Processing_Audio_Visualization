@@ -36,7 +36,7 @@ void BackgroundStrobe () {
   }
   else
   {
-    background(255);
+    background(233);
     //blackwhiteSwitch = true;
   } 
    

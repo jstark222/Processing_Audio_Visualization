@@ -13,6 +13,7 @@ int hatCounter = 0;
 int snareCounter = 0;
 boolean blackwhiteSwitch = true;
 float addme = 0;
+boolean mRelease = false;
 
 
 
@@ -33,6 +34,7 @@ void mainDisplayInit(String fileName) {
 void mainDisplayDraw() {
   beat.detect(player.mix);
   triggers();
+  mRelease = false;
   
   slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
  
@@ -92,8 +94,11 @@ void triggers() {
   } 
   if (beat.isSnare()) { 
     snareCounter++; 
-    if(blackwhiteSwitch){blackwhiteSwitch = false;}
-    else{blackwhiteSwitch = true;}
+      if (snareCounter % 5 == 0) {
+         if(blackwhiteSwitch){blackwhiteSwitch = false;}
+        else{blackwhiteSwitch = true;}
+
+      } //Call function
   }
   if (kickCounter % 5 == 0) {
       
@@ -102,10 +107,7 @@ void triggers() {
   if (hatCounter % 5 == 0) {
     
     } //Call function
-  if (snareCounter % 5 == 0) {
-   
 
-  } //Call function
  
 }
 
