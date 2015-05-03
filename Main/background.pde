@@ -5,11 +5,11 @@ int ptsW, ptsH;
 PImage img;
 PImage img2;
 float spin = 0.0;
-
+float input = 2;
 
 int yheight = 0;
 int reset = 800;
-int slowspin = 0;
+float slowspin = 0;
 
 
 
@@ -17,7 +17,7 @@ void DiscoInit() {
   
   noStroke();
   img2= loadImage("lights.jpg");
-  img2.resize(800, 600);
+  img2.resize(w, h);
   
 }
 
@@ -29,17 +29,16 @@ void BackgroundDiscoDraw(){
 void DiscoDraw() {
   //background(0);
  
-  if(spin >= 800)
-  {
-    spin = 0;
- 
-  }
+
   if(slowspin >= 800)
   {
     slowspin = 0;
+    //if(input < 3)
+      //input += 0.1;
+  
  
   }
-  spin = spin + input;
+ 
   slowspin = slowspin + input + (input/2);
   
 

@@ -11,8 +11,7 @@ BeatListener beatListener;
 int kickCounter = 0;
 int hatCounter = 0;
 int snareCounter = 0;
-int input = 1;
-int tempo = 0;
+
 
 
 void mainDisplayInit(String fileName) {  
@@ -47,6 +46,7 @@ void mainDisplayDraw() {
     case 2:
       BackgroundDiscoDraw();
       balldraw();
+      DiscoDraw();
       break;
     case 3:
      
@@ -79,17 +79,23 @@ void loadSong()
 
 void triggers() {
   
-  if (beat.isKick()) { kickCounter++; ballsetspeed(); tempo++; } //Call function
+  if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; } //Call function
-  if (beat.isSnare()) { snareCounter++; } //Call function
+  if (beat.isSnare()) { 
+    snareCounter++; 
+  }
   if (kickCounter % 5 == 0) {
-      tempo = input;
-      tempo = 0;
+      
       
   } //Call function
-  if (hatCounter % 5 == 0) {} //Call function
-  if (snareCounter % 5 == 0) {} //Call function
-  
+  if (hatCounter % 5 == 0) {
+    
+    } //Call function
+  if (snareCounter % 5 == 0) {
+   
+
+  } //Call function
+ 
 }
 
 
