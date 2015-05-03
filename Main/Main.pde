@@ -2,60 +2,51 @@
 
 
 
-String fileName = "..\\..\\Music\\The Times.mp3";  //The default location the loadFile() method looks is in the sketch's data folder; this moves up two directories and into the Music folder; this will error if your directory structure is different from the one on GitHub.
-int mode = 1;
-Boolean initTrigger = true;
+//String fileName = "..\\..\\Music\\The Times.mp3";  //The default location the loadFile() method looks is in the sketch's data folder; this moves up two directories and into the Music folder; this will error if your directory structure is different from the one on GitHub.
+ArrayList<String> fileName = new ArrayList();
+String songName;
+int currentSong = 0, mode = 1, hueVal = 0;
+Boolean initTrigger = true, initSongSelected = false;
+int effect = 2;
+int w = 800;
+int h = 600;
+
+
+public JFrame new_window;
 
 void setup() {
-  size(800, 600, JAVA2D);
+  size(w, h, JAVA2D);
+  textSize(16);
+  fileName.add("..\\..\\Music\\NepentheOriginal.mp3");
+  
   createGUI();
+  enableGui();
+  mainDisplayInit(fileName.get(currentSong));
+ 
+
 }
 
 
 void draw() {
   switch(mode) {
     case 1:
-      enableGui();
-      //addGui
+      mainDisplayDraw();
+      songName = fileName.get(currentSong).substring(fileName.get(currentSong).lastIndexOf('\\') + 1, fileName.get(currentSong).lastIndexOf('.'));
+        colorMode(HSB);
+          fill(hueVal, 255, 255);  //Provides a rainbow effect to the displayed text; this was implemented to prevent text from becoming unreadable against any BG
+          if (initSongSelected) { text(songName, 0, 12);  //Display the name of the current song in the top left corner of the window
+          text("Queue: " + fileName.size(), width - 80, 12); }  //Display the number of songs in the queue in the top right hand corner of the window
+          noFill();
+        colorMode(RGB);
+        hueVal = (hueVal > 255) ? 0 : hueVal + 1;
       break;
-    case 2:
-      disableGui();
-      if (initTrigger) {
-        initTrigger = false;
-        mainDisplayInit(fileName);
-      }
-      else { mainDisplayDraw(); }
-      
-      //visualStuff
-      break;
+    case 2: //Options Menu
+      background(0);
+      break;  
     case 3:
-      if (initTrigger) { initTrigger = false; }
-      else { }
+ 
       exit();
       break;
   }
 }
 
-
-
-/*
-void keyPressed() {
-  if (key == 'p' || key == 'P') {  //If the user presses p, the audio playback will toggle between play and pause
-    if (audioPlayer.isPlaying()) { audioPlayer.pause(); }
-    else { audioPlayer.play(); }
-  }
-  
-  if (key == 'm' || key == 'M') {  //If the user presses m, the audio playback will toggle muted/unmuted
-    if (audioPlayer.isMuted()) { audioPlayer.unmute(); }
-    else { audioPlayer.mute(); }
-  }
-  
-  if (key == 's') { println("Playback Position: (in seconds):\t" + (audioPlayer.position() / 1000.0)); }  //Writes the current playback position in seconds to the console
-}
-
-
-void keyReleased() {  //Constant calling of skip() results in choppy playback behavior; thus, keyReleased() is used here instead of keyPressed().
-  if (key == CODED && keyCode == RIGHT) { audioPlayer.skip(100); }  //Skip() skips milliseconds from the current position. If a skip results in a position greater than length(), the new position will be clamped to length().
-  if (key == CODED && keyCode == LEFT) { audioPlayer.skip(-500); }  //The skip value "millis" can be negative, causing the playback to skip backwards. If a negative skip results in a negative position, the new position will be clamped to zero.
-}
-*/

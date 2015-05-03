@@ -13,6 +13,7 @@ int hatCounter = 0;
 int snareCounter = 0;
 
 
+
 void mainDisplayInit(String fileName) {  
   minim = new Minim(this);
   loadSong();
@@ -20,7 +21,10 @@ void mainDisplayInit(String fileName) {
   beat.setSensitivity(50);
   beatListener = new BeatListener(beat, player);
   ballinit();
+  DiscoInit();
+  
   drawSongSlider();
+  
 }
 
 
@@ -28,26 +32,70 @@ void mainDisplayDraw() {
   beat.detect(player.mix);
   triggers();
   slider1.setTrackOffset(map(player.position(), 0, player.length(), 0, 10.0));
-  balldraw();
+  
+  
+  switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
+  {
+    case 0:
+      BackgroundDiscoDraw();
+      break;
+    case 1:
+       rect(0,0,width,height);
+       balldraw();
+      break;
+    case 2:
+      BackgroundDiscoDraw();
+      balldraw();
+      DiscoDraw();
+      break;
+    case 3:
+     
+      BackgroundDiscoDraw();
+      balldraw();
+     
+      break;
+    case 4:
+    
+      break;
+    case 5:
+    
+    
+      break;
+    case 6:
+    
+      break;
+  } 
+ 
+
 }
 
 
 void loadSong()
 {
-  player = minim.loadFile(fileName);  //This method functions much the same way as loadImage()
+  player = minim.loadFile(fileName.get(currentSong));  //This method functions much the same way as loadImage()
    
   
 }
 
 void triggers() {
   
-  if (beat.isKick()) { kickCounter++; ballsetspeed(); println("asdadf");} //Call function
+  if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; } //Call function
-  if (beat.isSnare()) { snareCounter++; } //Call function
-  if (kickCounter % 5 == 0) {} //Call function
-  if (hatCounter % 5 == 0) {} //Call function
-  if (snareCounter % 5 == 0) {} //Call function
-  
+  if (beat.isSnare()) { 
+    snareCounter++; 
+  }
+  if (kickCounter % 5 == 0) {
+      
+      
+  } //Call function
+  if (hatCounter % 5 == 0) {
+    
+    } //Call function
+  if (snareCounter % 5 == 0) {
+   
+
+  } //Call function
+ 
 }
 
 

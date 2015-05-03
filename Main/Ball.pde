@@ -9,8 +9,8 @@ class Ball{
     diameter = random(10,50);
     //Then don't let too close to edg
     //because it keeps bounce from working
-    xpos = random(diameter, width-diameter);
-    ypos = random(diameter, height-diameter);
+    xpos = random(diameter, w-diameter);
+    ypos = random(diameter, h-diameter);
     xspeed = random(0.1,5.0);
     yspeed = random(0.1,5.0);
     //set a random color

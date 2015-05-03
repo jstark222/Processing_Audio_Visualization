@@ -1,10 +1,16 @@
 int ptsW, ptsH;
 
 PImage img;
+PImage img2;
+float spin = 0.0;
 
 int numPointsW;
 int numPointsH_2pi; 
 int numPointsH;
+int input = 1;
+int yheight = 0;
+int reset = 800;
+int slowspin = 0;
 
 float[] coorX;
 float[] coorY;
@@ -12,43 +18,63 @@ float[] coorZ;
 float[] multXZ;
 
 void setup() {
-  size(640, 360, P3D);
+  size(800, 600, P3D);
   background(0);
   noStroke();
-  img=loadImage("harbor.jpg");
+  img2= loadImage("lights.jpg");
+  img2.resize(800, 600);
+  img=loadImage("mult.jpg");
   ptsW=30;
   ptsH=30;
   // Parameters below are the number of vertices around the width and height
   initializeSphere(ptsW, ptsH);
 }
 
-// Use arrow keys to change detail settings
-void keyPressed() {
-  if (keyCode == ENTER) saveFrame();
-  if (keyCode == UP) ptsH++;
-  if (keyCode == DOWN) ptsH--;
-  if (keyCode == LEFT) ptsW--;
-  if (keyCode == RIGHT) ptsW++;
-  if (ptsW == 0) ptsW = 1;
-  if (ptsH == 0) ptsH = 2;
-  // Parameters below are the number of vertices around the width and height
-  initializeSphere(ptsW, ptsH);
-}
+
 
 void draw() {
   background(0);
-  camera(width/2+map(mouseX, 0, width, -2*width, 2*width), 
-         height/2+map(mouseY, 0, height, -height, height),
-         height/2/tan(PI*30.0 / 180.0), 
-         width, height/2.0, 0, 
-         0, 1, 0);
+ 
+  if(spin >= 800)
+  {
+    spin = 0;
+ 
+  }
+  if(slowspin >= 800)
+  {
+    slowspin = 0;
+ 
+  }
+  spin = spin + input;
+  slowspin = slowspin + input + (input/2);
+  
+  image(img2, slowspin-800, 0);
+  image(img2, slowspin, 0);
+  
+  yheight++;
+ 
+ 
+ for (int x = 0; x <= width; x += 60) {
+    for (int y = 0; y <= height; y += 60) {
+      pushMatrix();
+      if(yheight < height/2)
+      {
+        translate(width/2, yheight, 0);
+      }
+      else
+      {
+        translate(width/2, height/2, 0); 
+      }
+       rotateY(map(-spin, 0, width, 0, PI));
+       textureSphere(110, 110, 110, img);
+       popMatrix();
+   
+    }
+  }
 
-  pushMatrix();
-  translate(width/2, height/2, 0);
-  textureSphere(200, 200, 200, img);
-  popMatrix();
+ 
+
 }
-
 void initializeSphere(int numPtsW, int numPtsH_2pi) {
 
   // The number of points around the width and height
@@ -113,3 +139,6 @@ void textureSphere(float rx, float ry, float rz, PImage t) {
   }
   endShape();
 }
+
+
+

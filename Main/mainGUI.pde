@@ -1,61 +1,140 @@
-/* =========================================================
- * ====                   WARNING                        ===
- * =========================================================
- * The code in this tab has been generated from the GUI form
- * designer and care should be taken when editing this file.
- * Only add/edit code inside the event handlers i.e. only
- * use lines between the matching comment tags. e.g.
-
- void myBtnEvents(GButton button) { //_CODE_:button1:12356:
-     // It is safe to enter your event code here  
- } //_CODE_:button1:12356:
- 
- * Do not rename this tab!
- * =========================================================
- */
-
 import g4p_controls.*;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileFilter;
+import java.awt.event.*;
+
+import java.awt.BorderLayout;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.text.BadLocationException;
 
 
+String sensitivityInput = "50";
+JPopupMenu popup;
+JMenuItem menuItem;
+JComponent jcom;
+
+//Booleans control toggle of displayed Controls/ProgressBar
+boolean showControls = true;
+boolean showProgress = true;
 
 
 JFileChooser file_chooser = new JFileChooser();
 
-public void playButton_click(GButton source, GEvent event) { //_CODE_:playButton:471477:
-  println("playButton - GButton >> GEvent." + event + " @ " + millis());
-  mode = 2;
-  player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
-} //_CODE_:playButton:471477:
+//EVENT HANDLERS
+//==========================================================================
 
-public void stopButton_click(GButton source, GEvent event) { //_CODE_:stopButton:485553:
-  //println("stopButton - GButton >> GEvent." + event + " @ " + millis());
-  player.pause();
-  stopButton.setVisible(false);
-} //_CODE_:stopButton:485553:
-
-public void songButton_click(GButton source, GEvent event) { //_CODE_:songButton:902917:
-  //println("songButton - GButton >> GEvent." + event + " @ " + millis());
-  player.pause();
-  mode = 1;
-  openFile();
+public void playButton_click(GButton source, GEvent event) { 
+  if (source == playButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
  
-} //_CODE_:songButton:902917:
+    if (!player.isPlaying()) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+  }
+} 
 
-public void optionsButton_click(GButton source, GEvent event) { //_CODE_:optionsButton:431186:
-  //println("optionsButton - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:optionsButton:431186:
+public void stopButton_click(GButton source, GEvent event) {
+  
+  if (source == stopButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    player.pause();
+  }
+} 
 
-public void slider1_change1(GSlider source, GEvent event) { //_CODE_:slider1:895819:
-  //println("slider1 - GSlider >> GEvent." + event + " @ " + millis());
-  player.cue(int(map(slider1.getTrackOffset(), 0, 10, 0, player.length())));
+public void songButton_click(GButton source, GEvent event) { 
+ 
+  if (source == songButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    if (player.isPlaying()) player.pause();
+    openFile();
+  }
+ 
+} 
+
+public void optionsButton_click(GButton source, GEvent event) { 
+  
+  if (source == optionsButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+  }
+} 
+
+public void slider1_change1(GSlider source, GEvent event) { 
+  
+  if (source == slider1  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    player.cue(int(map(slider1.getTrackOffset(), 0, 10, 0, player.length())));
+  }
   
   
-} //_CODE_:slider1:895819:
+} 
+class MenuActionListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    if(e.getActionCommand()  == "Show/Hide Song Controls")
+    {
+        if(showControls)
+        {
+            disableGui();
+            showControls = false;
+        }
+        else
+        {
+            enableGui();
+            showControls = true;
+          
+        }
+        
+    }
+    else if(e.getActionCommand() == "Show/Hide Progress Bar")
+    {
+        if(showProgress)
+        {
+            disableProgressBar();
+            showProgress = false;
+        }
+        else
+        {
+            enableProgressBar();
+            showProgress = true;
+          
+        }
+    }
+    else if(e.getActionCommand() == "Play Next Song")
+    {
+      if (currentSong < fileName.size()  &&  fileName.size() > 1) {
+        currentSong++;
+        player.pause();
+        loadSong();
+        player.play();
+      }
+    }
+    else if(e.getActionCommand() == "Play Previous Song")
+    {
+      if (currentSong > 0) {
+        currentSong--;
+        player.pause();
+        loadSong();
+        player.play();
+      }
+    }
+    else if(e.getActionCommand() == "Exit")
+    {
+       mode = 3;
+    }
+
+
+  }
+}
+//===================================================================
+
+
+//GUI ENABLES AND DISABLES
+//=====================================================================
 
 public void enableGui(){
  playButton.setVisible(true);
@@ -80,31 +159,51 @@ public void disableGui(){
   
 }
 
+public void enableProgressBar(){
+  slider1.setVisible(true);
+  slider1.setEnabled(true);
+  
+}
+
+public void disableProgressBar(){
+  slider1.setVisible(false);
+  slider1.setEnabled(false);
+  
+}
+//=================================================================
+
 // Create all the GUI controls. 
-// autogenerated do not edit
+//=================================================================
 public void createGUI(){
   G4P.messagesEnabled(false);
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setCursor(ARROW);
   if(frame != null)
     frame.setTitle("Sketch Window");
+    
   playButton = new GButton(this, 275, 530, 100, 30);
   playButton.setText("Play");
   playButton.setTextBold();
   playButton.addEventHandler(this, "playButton_click");
+  playButton.fireAllEvents(true);
+  
   stopButton = new GButton(this, 425, 530, 100, 30);
   stopButton.setText("Stop");
   stopButton.setTextBold();
   stopButton.addEventHandler(this, "stopButton_click");
+  stopButton.fireAllEvents(true);
+  
   songButton = new GButton(this, 125, 530, 100, 30);
   songButton.setText("Song");
   songButton.setTextBold();
   songButton.addEventHandler(this, "songButton_click");
+  songButton.fireAllEvents(true);
+  
   optionsButton = new GButton(this, 575, 530, 100, 30);
   optionsButton.setText("Options");
   optionsButton.setTextBold();
   optionsButton.addEventHandler(this, "optionsButton_click");
-  
+  optionsButton.fireAllEvents(true);
 }
 
 void drawSongSlider(){
@@ -124,8 +223,54 @@ GButton songButton;
 GButton optionsButton; 
 GSlider slider1; 
 
+//mouse RIGHT CLICK MENU
+void mousePressed() {
+  if (mouseButton == RIGHT) {
+    JFrame frame = new JFrame("Popup Example");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
+
+
+    final JTextField textField = new JTextField();
+    //frame.add(textField, BorderLayout.NORTH);
+    
+    this.add(textField, BorderLayout.SOUTH);
+
+    final JPopupMenu popup = new JPopupMenu();
+    JMenuItem menuItem1 = new JMenuItem("Show/Hide Song Controls");
+    menuItem1.addActionListener(new MenuActionListener());
+    popup.add(menuItem1);
+
+    JMenuItem menuItem2 = new JMenuItem("Show/Hide Progress Bar");
+    menuItem2.addActionListener(new MenuActionListener());
+    popup.add(menuItem2);
+    
+    JMenuItem menuItem3 = new JMenuItem("Play Next Song");
+    menuItem3.addActionListener(new MenuActionListener());
+    popup.add(menuItem3);
+    
+    JMenuItem menuItem4 = new JMenuItem("Play Previous Song");
+    menuItem4.addActionListener(new MenuActionListener());
+    popup.add(menuItem4);
+    
+    JMenuItem menuItem5 = new JMenuItem("Exit");
+    menuItem5.addActionListener(new MenuActionListener());
+    popup.add(menuItem5);
+    
+
+    
+        
+    popup.show(textField, mouseX, mouseY);
+    
+
+
+  }
+
+}
+
+//FOR TESTING PURPOSES ONLY  DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//==================================================================
 void keyPressed() {
   switch(key) {
     case '1':
@@ -137,11 +282,25 @@ void keyPressed() {
     case '3':
       mode = 3;
       break;
+    case 'q':
+      effect = 1;
+      break;
+    case 'w':
+      effect = 2;
+      break;
+    case 'e':
+      effect = 3;
+      break;  
+    case 's':
+      sensitivityInput = "999";
+      beat.setSensitivity(int(sensitivityInput));
+      println("Sensitivity is: " + sensitivityInput);
   }
 }
-
+//====================================================================
 
 //FILE OPENER
+//====================================================================
 public void openFile()
 {
   try
@@ -159,12 +318,17 @@ public void openFile()
           File file = file_chooser.getSelectedFile();
           
           
-          fileName = file.getAbsolutePath();
+          if (initSongSelected) {
+            fileName.add(file.getAbsolutePath());
+            currentSong = fileName.size() - 1;
+          }
+          else { fileName.set(0, file.getAbsolutePath()); initSongSelected = true; }
+          
           loadSong();
         }
         else
         {
-          fileName = "none";
+          //fileName = "none";  //Seems like it would crash our program if "none" ever got passed to player
         }
       }
     }
@@ -176,7 +340,11 @@ public void openFile()
   }
 }
 
+//================================================================
+
+
 //Applying File Filter
+//=================================================================
 public JFileChooser checkType(JFileChooser type){
     FileFilter filter1 = new ExtensionFileFilter("Aiff, au, wav, mp3", new String[]{ "AIFF", "AU", "WAV", "MP3"});
     type.setFileFilter(filter1);
@@ -231,3 +399,4 @@ class ExtensionFileFilter extends FileFilter {
     return false;
   }
 }
+//=======================================================================
