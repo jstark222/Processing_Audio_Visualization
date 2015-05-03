@@ -66,12 +66,8 @@ public void optionsButton_click(GButton source, GEvent event) {
 } 
 
 public void slider1_click(GSlider source, GEvent event) { 
-  println("START");
   if (source == slider1  &&  mRelease) {  //This is a work-around for the double button clicked effect
-    println(slider1.getValueF());
-    //println(player.position());
     player.cue(int(map(slider1.getValueF(), 0.0, 1.0, 0, player.length())));
-    //player.cue(60000);
   }
   
   

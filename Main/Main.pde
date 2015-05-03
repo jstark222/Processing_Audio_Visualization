@@ -39,6 +39,13 @@ void draw() {
           noFill();
         colorMode(RGB);
         hueVal = (hueVal > 255) ? 0 : hueVal + 1;
+        
+        if ((player.position() >= player.length() - 1000)  &&  currentSong < fileName.size() -1) {
+          currentSong++;
+          player.pause();
+          loadSong();
+          player.play();
+        } 
       break;
     case 2: //Options Menu
       background(0);
@@ -49,4 +56,3 @@ void draw() {
       break;
   }
 }
-
