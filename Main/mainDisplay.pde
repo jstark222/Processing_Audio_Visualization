@@ -11,6 +11,7 @@ BeatListener beatListener;
 int kickCounter = 0;
 int hatCounter = 0;
 int snareCounter = 0;
+boolean blackwhiteSwitch = true;
 
 
 
@@ -37,7 +38,9 @@ void mainDisplayDraw() {
   switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
   {
     case 0:
-      BackgroundDiscoDraw();
+      //BackgroundDiscoDraw();
+      BackgroundStrobe();
+      balldraw();
       break;
     case 1:
        rect(0,0,width,height);
@@ -80,9 +83,14 @@ void loadSong()
 void triggers() {
   
   if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
-  if (beat.isHat()) { hatCounter++; } //Call function
+  if (beat.isHat()) { hatCounter++; 
+      
+  
+  } 
   if (beat.isSnare()) { 
     snareCounter++; 
+    if(blackwhiteSwitch){blackwhiteSwitch = false;}
+    else{blackwhiteSwitch = true;}
   }
   if (kickCounter % 5 == 0) {
       
