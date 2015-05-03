@@ -13,6 +13,7 @@ float slowspin = 0;
 
 
 
+
 void DiscoInit() {
   
   noStroke();
@@ -26,6 +27,21 @@ void BackgroundDiscoDraw(){
     image(img2, slowspin, 0);
 }
 
+
+void BackgroundStrobe () {
+  if(blackwhiteSwitch)
+  {
+    background(0);
+    //blackwhiteSwitch = false; 
+  }
+  else
+  {
+    background(255);
+    //blackwhiteSwitch = true;
+  } 
+   
+  
+} 
 void DiscoDraw() {
   //background(0);
  
