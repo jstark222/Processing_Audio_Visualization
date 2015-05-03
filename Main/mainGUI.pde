@@ -68,7 +68,8 @@ public void optionsButton_click(GButton source, GEvent event) {
 public void slider1_change(GSlider source, GEvent event) { 
   println("START");
   if (source == slider1  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-    println("HERE");
+    println(slider1.getValueF());
+    //println(player.position());
     player.cue(int(map(slider1.getValueF(), 0.0, 1.0, 0, player.length())));
   }
   
@@ -107,7 +108,7 @@ class MenuActionListener implements ActionListener {
     }
     else if(e.getActionCommand() == "Play Next Song")
     {
-      if (currentSong < fileName.size()  &&  fileName.size() > 1) {
+      if (currentSong < fileName.size() - 1  &&  fileName.size() > 1) {
         currentSong++;
         player.pause();
         loadSong();
