@@ -94,7 +94,7 @@ void triggers() {
   } 
   if (beat.isSnare()) { 
     snareCounter++; 
-      if (snareCounter % 5 == 0) {
+      if (snareCounter % 2 == 0) {
          if(blackwhiteSwitch){blackwhiteSwitch = false;}
         else{blackwhiteSwitch = true;}
 

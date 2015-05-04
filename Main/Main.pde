@@ -1,22 +1,25 @@
 //Main file to launch all other code
-
-
-
 //String fileName = "..\\..\\Music\\The Times.mp3";  //The default location the loadFile() method looks is in the sketch's data folder; this moves up two directories and into the Music folder; this will error if your directory structure is different from the one on GitHub.
 ArrayList<String> fileName = new ArrayList();
 String songName;
 int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, initSongSelected = false;
 int effect = 0;
-int w = 1200;
-int h = 800;
+int w = 0;
+int h = 0;
+
 
 
 public JFrame new_window;
 
+boolean sketchFullScreen(){
+  return true;
+}
+
+
 void setup() {
-  //w = displayWidth;
-  //h = displayHeight;
+  w = displayWidth;
+  h = displayHeight;
   size(w, h, JAVA2D);
   textSize(16);
   fileName.add("..\\..\\Music\\NepentheOriginal.mp3");
