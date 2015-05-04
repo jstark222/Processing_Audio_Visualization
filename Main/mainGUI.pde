@@ -60,7 +60,9 @@ public void stopButton_click(GButton source, GEvent event) {
 public void songButton_click(GButton source, GEvent event) { 
  
   if (source == songButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-    if (player.isPlaying()) player.pause();
+    if (initSongSelected) {
+      if (player.isPlaying()) player.pause();
+    }
     openFile();
   }
  
@@ -81,7 +83,10 @@ public void slider1_click(GSlider source, GEvent event) {
 } 
 public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-    fileName.clear();    
+    fileName.clear();
+    background(0);
+    player.pause();
+    initSongSelected = false;
   }
 }
 class MenuActionListener implements ActionListener {
@@ -225,6 +230,7 @@ public void createGUI(){
   optionsButton.setTextBold();
   optionsButton.addEventHandler(this, "optionsButton_click");
   optionsButton.fireAllEvents(true);
+  
 }
 
 void drawSongSlider(){
@@ -235,7 +241,7 @@ void drawSongSlider(){
   slider1.setNumberFormat(G4P.DECIMAL, 2);
   slider1.setOpaque(false);
   slider1.addEventHandler(this, "slider1_click");
-  
+  showProgress = true;
 }
 void mouseReleased(){
  mRelease = true; 
@@ -339,13 +345,14 @@ public void openFile()
           File file = file_chooser.getSelectedFile();
           
           
-          if (initSongSelected) {
+          if (songLoaded) {
             fileName.add(file.getAbsolutePath());
             currentSong = fileName.size() - 1;
           }
-          else { fileName.set(0, file.getAbsolutePath()); initSongSelected = true; }
+          else { fileName.add(file.getAbsolutePath()); songLoaded = true; }
           
           loadSong();
+          mainDisplayInit();
         }
         else
         {
@@ -360,6 +367,13 @@ public void openFile()
     e.printStackTrace();
   }
 }
+
+
+void loadSong()
+{
+  player = minim.loadFile(fileName.get(currentSong));  //This method functions much the same way as loadImage()
+}
+
 
 //================================================================
 
