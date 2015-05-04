@@ -9,6 +9,12 @@ int snareCounter = 0;
 boolean blackwhiteSwitch = true;
 float addme = 0;
 boolean mRelease = false;
+boolean explotion = false;
+boolean create_explotion = false;
+boolean star_create = false;
+ArrayList<Ball> b = new ArrayList<Ball>();
+ArrayList<Integer> b3 = new ArrayList<Integer>();
+Meteor star;
 
 
 
@@ -58,7 +64,7 @@ void mainDisplayDraw() {
      
       break;
     case 4:
-    
+      drawExplosion();
       break;
     case 5:
     
@@ -77,7 +83,7 @@ void triggers() {
   
   if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; 
-      
+      setStar();
   
   } 
   if (beat.isSnare()) { 
@@ -85,7 +91,7 @@ void triggers() {
       if (snareCounter % 2 == 0) {
          if(blackwhiteSwitch){blackwhiteSwitch = false;}
         else{blackwhiteSwitch = true;}
-
+      create_explotion = true;
       } //Call function
   }
   if (kickCounter % 5 == 0) {
@@ -98,6 +104,9 @@ void triggers() {
 
  
 }
+
+
+
 
 
 
