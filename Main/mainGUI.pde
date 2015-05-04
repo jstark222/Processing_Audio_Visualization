@@ -46,7 +46,7 @@ JFileChooser file_chooser = new JFileChooser();
 public void playButton_click(GButton source, GEvent event) { 
   if (source == playButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
  
-    if (!player.isPlaying()) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+    if (!player.isPlaying()  &&  initSongSelected) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
   }
 } 
 
@@ -95,6 +95,7 @@ class MenuActionListener implements ActionListener {
     {
         if(showControls)
         {
+            background(0);
             disableGui();
             showControls = false;
         }
@@ -110,6 +111,7 @@ class MenuActionListener implements ActionListener {
     {
         if(showProgress)
         {
+            background(0);
             disableProgressBar();
             showProgress = false;
         }
@@ -372,6 +374,7 @@ public void openFile()
 void loadSong()
 {
   player = minim.loadFile(fileName.get(currentSong));  //This method functions much the same way as loadImage()
+  player.play();
 }
 
 
