@@ -17,6 +17,7 @@ Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
 int effect = 4;
 int w = 0;
 int h = 0;
+boolean optionBool = false;
 
 
 
@@ -32,12 +33,15 @@ void setup() {
   h = displayHeight;
   size(w, h, JAVA2D);
   textSize(16);
-  background(0);
   
   minim = new Minim(this);
+  background(255);
+  createOptionsGUI();
   createGUI();
+  
   enableGui(); 
   drawSongSlider();
+  drawRectangle();
 
 }
 

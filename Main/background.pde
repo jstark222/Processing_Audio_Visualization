@@ -47,6 +47,10 @@ void BlackBackground(){
  background(0); 
   
 }
+void WhiteBackground(){
+ background(255); 
+  
+}
 void DiscoDraw() {
   //background(0);
  

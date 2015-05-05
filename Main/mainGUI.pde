@@ -38,6 +38,7 @@ boolean showControls = true;
 boolean showProgress = true;
 
 
+
 JFileChooser file_chooser = new JFileChooser();
 
 //EVENT HANDLERS
@@ -71,6 +72,18 @@ public void songButton_click(GButton source, GEvent event) {
 public void optionsButton_click(GButton source, GEvent event) { 
   
   if (source == optionsButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+      if(optionBool)
+      {
+         enableOptionsGUI();
+        optionBool = false;  
+      }
+      else
+      {
+         disableOptionsGUI(); 
+         optionBool = true;
+         
+      }
+
   }
 } 
 

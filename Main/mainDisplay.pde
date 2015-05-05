@@ -68,6 +68,7 @@ void mainDisplayDraw() {
       BlackBackground();
       drawExplosion();
       drawStar();
+      drawRectangle();
       break;
     case 5:
     
