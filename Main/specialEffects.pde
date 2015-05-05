@@ -15,7 +15,7 @@ void ballinit(){
     b.add(new Ball());
   }
   star = new Meteor();
-  num_show = 100;
+  num_show = 200;
   speed = 20.0;
 }
 
@@ -29,7 +29,7 @@ void balldraw(){
 
 void ballsetspeed(){
   ArrayList<Integer> b2 = new ArrayList<Integer>();
-    changeColor();
+    
     float newSpeed =  random(-10,10);
     int select_ball = (int) random(0, b.size() / 3);
     
@@ -40,7 +40,7 @@ void ballsetspeed(){
        //b[b2.get(i)].setFast(newSpeed);
        b.get(b2.get(i)).setFast(newSpeed);
     }
-   
+   changeColor();
 }
 void drawStar(){
    if(star.get_touch() == true){
@@ -100,10 +100,11 @@ void setStar(){
  
 }
 void changeColor(){
-  color c = color(random(0,255),random(0,255),random(0,255),random(0,255));
+   color c = color(random(0,255),random(0,255),random(0,255),random(0,255));
    for (int i =0; i< num_show/3 ;i++){
-    int ran_num = (int) random(0,num_show);
-    b.get(ran_num).setColor(c);
+      int ran_num = (int) random(0,num_show);
+      b.get(ran_num).setColor(c);
+      
    }
 }
   

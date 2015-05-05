@@ -18,16 +18,22 @@ Meteor star;
 boolean starActive = false;//Set true to see star 
 
 
+void beatInitializer(){
+   beat = new BeatDetect(player.bufferSize(), player.sampleRate());
+  beat.setSensitivity(20);
+  beatListener = new BeatListener(beat, player);
+   
+  initSongSelected = true;
+}
+
+
 
 void mainDisplayInit() {  
   //loadSong();
-  beat = new BeatDetect(player.bufferSize(), player.sampleRate());
-  beat.setSensitivity(30);
-  beatListener = new BeatListener(beat, player);
+
   ballinit();
   DiscoInit();
-  
-  initSongSelected = true;
+ 
 }
 
 

@@ -367,7 +367,7 @@ public void openFile()
           else { fileName.add(file.getAbsolutePath()); songLoaded = true; }
           
           loadSong();
-          mainDisplayInit();
+          beatInitializer();
         }
         else
         {

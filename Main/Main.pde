@@ -33,7 +33,12 @@ void setup() {
   h = displayHeight;
   size(w, h, JAVA2D);
   textSize(16);
+  mainInitializer();
+
   
+}
+
+void mainInitializer(){
   minim = new Minim(this);
   background(255);
   createOptionsGUI();
@@ -41,10 +46,10 @@ void setup() {
   
   enableGui(); 
   drawSongSlider();
+  mainDisplayInit();
   drawRectangle();
-
+  
 }
-
 
 void draw() {
   switch(mode) {
