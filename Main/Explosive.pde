@@ -3,19 +3,19 @@ class Explosive{
   float xspeed, yspeed;
   float diameter;
   float lifespan = 255.0;
-  color c = color(lifespan,0, 0);
+  color c = color(lifespan,lifespan, lifespan);
 
   
   
   Explosive (float xp, float yp){
     //set diameter before position
-    diameter = random(1,5);
+    diameter = random(1,8);
     //Then don't let too close to edg
     //because it keeps bounce from working
     xpos = xp;
     ypos = yp;
-    xspeed = random(-2.0,2.0);//adjust here to get the spare speed
-    yspeed = random(-2.0,2.0);
+    xspeed = random(-3.0,3.0);//adjust here to get the spare speed
+    yspeed = random(-3.0,3.0);
     
     //set a random color
   }
@@ -28,7 +28,7 @@ class Explosive{
       xpos += xspeed;
       ypos += yspeed;
       lifespan = lifespan - 2.0; // adjust here to get the fade time
-      this.setColor(color(lifespan,0,0));
+      this.setColor(color(lifespan,lifespan,lifespan));
       this.bounce();
     }
      else{
@@ -37,9 +37,9 @@ class Explosive{
   }
   
    void bounce(){
-    if (xpos> width -diameter/2) xspeed = -xspeed;
+    if (xpos> w -diameter/2) xspeed = -xspeed;
     else if (xpos < diameter/2) xspeed = -xspeed;
-    if (ypos > height - diameter/2) yspeed = -yspeed;
+    if (ypos > h - diameter/2) yspeed = -yspeed;
     else if (ypos < diameter/2) yspeed = -yspeed;
   }
   

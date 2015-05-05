@@ -15,13 +15,14 @@ boolean star_create = false;
 ArrayList<Ball> b = new ArrayList<Ball>();
 ArrayList<Integer> b3 = new ArrayList<Integer>();
 Meteor star;
+boolean starActive = false;//Set true to see star 
 
 
 
 void mainDisplayInit() {  
   //loadSong();
   beat = new BeatDetect(player.bufferSize(), player.sampleRate());
-  beat.setSensitivity(50);
+  beat.setSensitivity(30);
   beatListener = new BeatListener(beat, player);
   ballinit();
   DiscoInit();
@@ -64,7 +65,9 @@ void mainDisplayDraw() {
      
       break;
     case 4:
+      BlackBackground();
       drawExplosion();
+      drawStar();
       break;
     case 5:
     
@@ -83,15 +86,18 @@ void triggers() {
   
   if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; 
-      setStar();
+      
+      if(starActive)
+        setStar();
   
   } 
   if (beat.isSnare()) { 
     snareCounter++; 
+    create_explotion = true;
       if (snareCounter % 2 == 0) {
          if(blackwhiteSwitch){blackwhiteSwitch = false;}
         else{blackwhiteSwitch = true;}
-      create_explotion = true;
+      
       } //Call function
   }
   if (kickCounter % 5 == 0) {

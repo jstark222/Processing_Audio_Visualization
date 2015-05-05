@@ -1,7 +1,7 @@
 //Special Effects library
 import java.util.ArrayList;
 float kickSize, snareSize, hatSize;
-final int NUMBALLS = 100;
+final int NUMBALLS = 200;
 //Ball[] b = new Ball[NUMBALLS];
 
 boolean frozen = false;
@@ -16,7 +16,7 @@ void ballinit(){
   }
   star = new Meteor();
   num_show = 100;
-  speed = 10.0;
+  speed = 20.0;
 }
 
 void balldraw(){
@@ -42,6 +42,18 @@ void ballsetspeed(){
     }
    
 }
+void drawStar(){
+   if(star.get_touch() == true){
+    star_create = false;
+  }
+  
+  if(star_create == true){
+      star.display();
+   }  
+  
+}
+
+
   
 void drawExplosion(){
  rect(0,0,width,height);
@@ -85,13 +97,7 @@ void setStar(){
       
   }
   
-  if(star.get_touch() == true){
-    star_create = false;
-  }
-  
-  if(star_create == true){
-      star.display();
-   }  
+ 
 }
 void changeColor(){
   color c = color(random(0,255),random(0,255),random(0,255),random(0,255));

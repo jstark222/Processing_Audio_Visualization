@@ -42,6 +42,11 @@ void BackgroundStrobe () {
    
   
 } 
+
+void BlackBackground(){
+ background(0); 
+  
+}
 void DiscoDraw() {
   //background(0);
  

@@ -14,7 +14,7 @@ ArrayList<String> fileName = new ArrayList(1);
 String songName;
 int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
-int effect = 0;
+int effect = 4;
 int w = 0;
 int h = 0;
 
