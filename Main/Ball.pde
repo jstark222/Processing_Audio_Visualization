@@ -17,8 +17,15 @@ class Ball{
   }
   
   void display(){
-    fill(c);
-    //noFill();
+    
+    if(fillTrue)
+    {
+      fill(c);
+    }
+    else
+    {
+      noFill();
+    }
     stroke(c);
     ellipse(xpos,ypos,diameter,diameter);
     xpos += xspeed;

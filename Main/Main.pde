@@ -18,6 +18,7 @@ int effect = 4;
 int w = 0;
 int h = 0;
 boolean optionBool = false;
+boolean fillTrue = false;
 
 
 

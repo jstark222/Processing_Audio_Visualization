@@ -1,11 +1,11 @@
 //Special Effects library
 import java.util.ArrayList;
 float kickSize, snareSize, hatSize;
-final int NUMBALLS = 200;
-//Ball[] b = new Ball[NUMBALLS];
+int NUMBALLS = 200;
+
 
 boolean frozen = false;
-float speed;
+float speed = 20.0;
 
 int num_show;
 
@@ -15,8 +15,7 @@ void ballinit(){
     b.add(new Ball());
   }
   star = new Meteor();
-  num_show = 200;
-  speed = 20.0;
+  num_show = NUMBALLS;
 }
 
 void balldraw(){

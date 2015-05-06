@@ -32,12 +32,12 @@ void BackgroundStrobe () {
   if(blackwhiteSwitch)
   {
     background(0);
-    //blackwhiteSwitch = false; 
+
   }
   else
   {
     background(233);
-    //blackwhiteSwitch = true;
+ 
   } 
    
   
@@ -52,14 +52,13 @@ void WhiteBackground(){
   
 }
 void DiscoDraw() {
-  //background(0);
+  
  
 
   if(slowspin >= 800)
   {
     slowspin = 0;
-    //if(input < 3)
-      //input += 0.1;
+
   
  
   }

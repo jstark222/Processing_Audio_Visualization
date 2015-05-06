@@ -23,6 +23,8 @@ GCheckbox checkbox8;
 GCheckbox checkbox9; 
 GCheckbox checkbox10; 
 
+
+
 void drawRectangle(){
   if(!optionBool)
   {
@@ -46,7 +48,14 @@ public void textfield3_change1(GTextField source, GEvent event) { //_CODE_:textf
 } //_CODE_:textfield3:283395:
 
 public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox1:856806:
-  println("checkbox1 - GCheckbox >> GEvent." + event + " @ " + millis());
+   if(fillTrue)
+    {
+      fillTrue = false;
+    }
+    else
+    {
+      fillTrue = true;
+    }
 } //_CODE_:checkbox1:856806:
 
 public void checkbox2_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox2:666692:
@@ -102,24 +111,27 @@ public void createOptionsGUI(){
   label1.setFont(ARIAL);
   label1.setTextBold();
   label1.setOpaque(false);
-  textfield1 = new GTextField(this, (w-260), h-550, 90, 30, G4P.SCROLLBARS_NONE);
+  textfield1 = new GTextField(this, (w-260), h-545, 90, 20, G4P.SCROLLBARS_NONE);
   textfield1.setOpaque(true);
+  textfield1.setText(String.valueOf(bSensitive));
   textfield1.addEventHandler(this, "textfield1_change1");
   label2 = new GLabel(this, (w-400), h-500, 124, 30);
   label2.setText("Ball Speed");
   label2.setFont(ARIAL);
   label2.setTextBold();
   label2.setOpaque(false);
-  textfield2 = new GTextField(this, (w-260), h-500, 90, 30, G4P.SCROLLBARS_NONE);
+  textfield2 = new GTextField(this, (w-260), h-495, 90, 20, G4P.SCROLLBARS_NONE);
   textfield2.setOpaque(true);
+  textfield2.setText(String.valueOf(speed));
   textfield2.addEventHandler(this, "textfield2_change1");
   label3 = new GLabel(this, (w-400), h-450, 124, 30);
   label3.setText("Number of Balls");
   label3.setFont(ARIAL);
   label3.setTextBold();
   label3.setOpaque(false);
-  textfield3 = new GTextField(this, (w-260), h-450, 90, 30, G4P.SCROLLBARS_NONE);
+  textfield3 = new GTextField(this, (w-260), h-445, 90, 20, G4P.SCROLLBARS_NONE);
   textfield3.setOpaque(true);
+  textfield3.setText(String.valueOf(NUMBALLS));
   textfield3.addEventHandler(this, "textfield3_change1");
   checkbox1 = new GCheckbox(this, (w-300), h-380, 150, 40);
   checkbox1.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);

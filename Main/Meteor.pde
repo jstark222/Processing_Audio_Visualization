@@ -15,7 +15,7 @@ class Meteor{
     touch_border = false;
   }
   void display(){
-    //translate(width*0.8+speed, height*0.5+speed);
+    
     
     if(positionX < width){
       if(touch_border == false){

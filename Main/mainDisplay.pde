@@ -16,11 +16,13 @@ ArrayList<Ball> b = new ArrayList<Ball>();
 ArrayList<Integer> b3 = new ArrayList<Integer>();
 Meteor star;
 boolean starActive = false;//Set true to see star 
+int bSensitive = 50;
+int backgroundEffect = 1;
 
 
 void beatInitializer(){
    beat = new BeatDetect(player.bufferSize(), player.sampleRate());
-  beat.setSensitivity(20);
+  beat.setSensitivity(bSensitive);
   beatListener = new BeatListener(beat, player);
    
   initSongSelected = true;
@@ -45,18 +47,37 @@ void mainDisplayDraw() {
   mRelease = false;
   
   slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
- 
+  
+  switch(backgroundEffect)
+  {
+     
+   case 0://Default black
+      BlackBackground();
+      break;
+    case 1://No Background
+      
+      break;
+    case 2://White Background
+      WhiteBackground();
+      break;
+    case 3://Strobe
+      BackgroundStrobe();
+      break;
+    case 4://Disco Background
+      DiscoDraw();
+      break;
+
+     
+  }
 
   
   switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
   {
-    case 0:
-      //BackgroundDiscoDraw();
-      BackgroundStrobe();
+    case 0://Default
       balldraw();
       break;
     case 1:
-       rect(0,0,w,h);
+      
        balldraw();
       break;
     case 2:
@@ -71,10 +92,10 @@ void mainDisplayDraw() {
      
       break;
     case 4:
-      BlackBackground();
+      //BlackBackground();
       drawExplosion();
       drawStar();
-      drawRectangle();
+     
       break;
     case 5:
     
@@ -84,7 +105,7 @@ void mainDisplayDraw() {
     
       break;
   } 
- 
+ drawRectangle();
 
 }
 
