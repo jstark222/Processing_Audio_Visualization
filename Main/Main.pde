@@ -23,7 +23,6 @@ boolean fillTrue = false;
 
 
 public JFrame new_window;
-
 boolean sketchFullScreen(){
   return true;
 }
@@ -32,6 +31,8 @@ boolean sketchFullScreen(){
 void setup() {
   w = displayWidth;
   h = displayHeight;
+  //w = 800;
+  //h = 800;
   size(w, h, JAVA2D);
   textSize(16);
   mainInitializer();

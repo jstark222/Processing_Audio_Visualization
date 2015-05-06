@@ -36,11 +36,16 @@ void drawRectangle(){
 }
 
 public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:910149:
-  println("textfield1 - GTextField >> GEvent." + event + " @ " + millis());
+     println("textfield3 - GTextField >> GEvent." + event + " @ " + millis());
+     println("Integer " + textfield1.getText());
+    if (source == textfield1  &&  event == GEvent.CHANGED && textfield1.getText() != "" && Integer.parseInt(textfield1.getText()) > 10) {  //This is a work-around for the double button clicked effect
+      println("HERE");
+      bSensitive = Integer.parseInt(textfield2.getText());
+   }
 } //_CODE_:textfield1:910149:
 
 public void textfield2_change1(GTextField source, GEvent event) { //_CODE_:textfield2:852425:
-  println("textfield2 - GTextField >> GEvent." + event + " @ " + millis());
+  println("textfield3 - GTextField >> GEvent." + event + " @ " + millis());
 } //_CODE_:textfield2:852425:
 
 public void textfield3_change1(GTextField source, GEvent event) { //_CODE_:textfield3:283395:

@@ -17,7 +17,7 @@ ArrayList<Integer> b3 = new ArrayList<Integer>();
 Meteor star;
 boolean starActive = false;//Set true to see star 
 int bSensitive = 50;
-int backgroundEffect = 1;
+int backgroundEffect = 3;
 
 
 void beatInitializer(){
@@ -45,7 +45,7 @@ void mainDisplayDraw() {
     triggers();
   }
   mRelease = false;
-  
+  beat.setSensitivity(bSensitive);
   slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
   
   switch(backgroundEffect)
