@@ -61,9 +61,6 @@ public void stopButton_click(GButton source, GEvent event) {
 public void songButton_click(GButton source, GEvent event) { 
  
   if (source == songButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-    if (initSongSelected) {
-      if (player.isPlaying()) player.pause();
-    }
     openFile();
   }
  
@@ -99,6 +96,8 @@ public void clearButton_click(GButton source, GEvent event){
     fileName.clear();
    
     player.pause();
+    currentSong = 0;
+    songLoaded = false;
     initSongSelected = false;
   }
 }
@@ -150,7 +149,7 @@ class MenuActionListener implements ActionListener {
         currentSong--;
         player.pause();
         loadSong();
-        player.play();
+        //player.play();
       }
     }
     else if(e.getActionCommand() == "Exit")
@@ -365,11 +364,14 @@ public void openFile()
           
           if (songLoaded) {
             fileName.add(file.getAbsolutePath());
-            currentSong = fileName.size() - 1;
+            //currentSong = fileName.size() - 1;
           }
-          else { fileName.add(file.getAbsolutePath()); songLoaded = true; }
+          else {
+            fileName.add(file.getAbsolutePath());
+            songLoaded = true;
+            loadSong();
+          }
           
-          loadSong();
           beatInitializer();
         }
         else
