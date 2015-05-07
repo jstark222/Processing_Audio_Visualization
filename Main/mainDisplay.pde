@@ -64,6 +64,7 @@ void mainDisplayDraw() {
       BackgroundStrobe();
       break;
     case 4://Disco Background
+      BackgroundDiscoDraw();
       DiscoDraw();
       break;
 

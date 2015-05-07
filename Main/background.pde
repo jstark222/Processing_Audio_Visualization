@@ -23,7 +23,7 @@ void DiscoInit() {
 }
 
 void BackgroundDiscoDraw(){
-    image(img2, slowspin-800, 0);
+    image(img2, slowspin-w, 0);
     image(img2, slowspin, 0);
 }
 
@@ -55,7 +55,7 @@ void DiscoDraw() {
   
  
 
-  if(slowspin >= 800)
+  if(slowspin >= w)
   {
     slowspin = 0;
 
@@ -63,7 +63,7 @@ void DiscoDraw() {
  
   }
  
-  slowspin = slowspin + input + (input/2);
+  slowspin = slowspin + input;
   
 
   

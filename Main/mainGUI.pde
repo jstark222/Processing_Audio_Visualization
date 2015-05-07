@@ -97,7 +97,7 @@ public void slider1_click(GSlider source, GEvent event) {
 public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
-    background(0);
+   
     player.pause();
     initSongSelected = false;
   }

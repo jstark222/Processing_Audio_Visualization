@@ -65,23 +65,23 @@ public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkb
 } //_CODE_:checkbox1:856806:
 
 public void noBackg_clicked1(GOption source, GEvent event) { //_CODE_:checkbox2:666692:
-  println("option1 - GOption >> GEvent." + event + " @ " + millis());
+   backgroundEffect = 1;
 } //_CODE_:checkbox2:666692:
 
 public void black_clicked1(GOption source, GEvent event) { //_CODE_:checkbox3:545766:
-  println("option2 - GOption >> GEvent." + event + " @ " + millis());
+  backgroundEffect = 0;
 } //_CODE_:checkbox3:545766:
 
 public void white_clicked1(GOption source, GEvent event) { //_CODE_:checkbox4:718822:
-  println("option3 - GOption >> GEvent." + event + " @ " + millis());
+  backgroundEffect = 2;
 } //_CODE_:checkbox4:718822:
 
 public void strobe_clicked1(GOption source, GEvent event) { //_CODE_:checkbox5:264324:
-  println("option4 - GOptio >> GEvent." + event + " @ " + millis());
+  backgroundEffect = 3;
 } //_CODE_:checkbox5:264324:
 
 public void disco_clicked1(GOption source, GEvent event) { //_CODE_:checkbox6:373425:
-  println("disco - GOption >> GEvent." + event + " @ " + millis());
+  backgroundEffect = 4;
 } //_CODE_:checkbox6:373425:
 
 public void checkbox7_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox7:388812:
