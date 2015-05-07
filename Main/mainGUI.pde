@@ -351,9 +351,12 @@ public void openFile()
     {
       public void run()
       {
+        File curDir = file_chooser.getCurrentDirectory();
+        file_chooser.setCurrentDirectory(curDir);
         file_chooser.setDialogTitle("Choose a Song");
         file_chooser = checkType(file_chooser);
         int return_val = file_chooser.showOpenDialog(null);
+        
         if ( return_val == JFileChooser.APPROVE_OPTION)
         {
           

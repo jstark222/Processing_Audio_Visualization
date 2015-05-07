@@ -12,11 +12,12 @@ GLabel label3;
 GTextField textfield3; 
 GCheckbox checkbox1; 
 GLabel label4; 
-GCheckbox checkbox2; 
-GCheckbox checkbox3; 
-GCheckbox checkbox4; 
-GCheckbox checkbox5; 
-GCheckbox checkbox6; 
+GToggleGroup togGroup1; 
+GOption noBack_radio; 
+GOption black; 
+GOption white; 
+GOption strobe; 
+GOption disco; 
 GLabel label5; 
 GCheckbox checkbox7; 
 GCheckbox checkbox8; 
@@ -63,24 +64,24 @@ public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkb
     }
 } //_CODE_:checkbox1:856806:
 
-public void checkbox2_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox2:666692:
-  println("checkbox2 - GCheckbox >> GEvent." + event + " @ " + millis());
+public void noBackg_clicked1(GOption source, GEvent event) { //_CODE_:checkbox2:666692:
+  println("option1 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:checkbox2:666692:
 
-public void checkbox3_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox3:545766:
-  println("checkbox3 - GCheckbox >> GEvent." + event + " @ " + millis());
+public void black_clicked1(GOption source, GEvent event) { //_CODE_:checkbox3:545766:
+  println("option2 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:checkbox3:545766:
 
-public void checkbox4_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox4:718822:
-  println("checkbox4 - GCheckbox >> GEvent." + event + " @ " + millis());
+public void white_clicked1(GOption source, GEvent event) { //_CODE_:checkbox4:718822:
+  println("option3 - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:checkbox4:718822:
 
-public void checkbox5_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox5:264324:
-  println("checkbox5 - GCheckbox >> GEvent." + event + " @ " + millis());
+public void strobe_clicked1(GOption source, GEvent event) { //_CODE_:checkbox5:264324:
+  println("option4 - GOptio >> GEvent." + event + " @ " + millis());
 } //_CODE_:checkbox5:264324:
 
-public void checkbox6_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox6:373425:
-  println("checkbox6 - GCheckbox >> GEvent." + event + " @ " + millis());
+public void disco_clicked1(GOption source, GEvent event) { //_CODE_:checkbox6:373425:
+  println("disco - GOption >> GEvent." + event + " @ " + millis());
 } //_CODE_:checkbox6:373425:
 
 public void checkbox7_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox7:388812:
@@ -149,37 +150,43 @@ public void createOptionsGUI(){
   label4.setFont(ARIAL);
   label4.setTextBold();
   label4.setOpaque(false);
-  checkbox2 = new GCheckbox(this, (w-375), h-275, 140, 30);
-  checkbox2.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox2.setText("  No Background");
-  checkbox2.setTextBold();
-  checkbox2.setOpaque(false);
-  checkbox2.addEventHandler(this, "checkbox2_clicked1");
-  checkbox2.setSelected(true);
-  checkbox3 = new GCheckbox(this, (w-375), h-250, 140, 30);
-  checkbox3.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox3.setText("  Black");
-  checkbox3.setTextBold();
-  checkbox3.setOpaque(false);
-  checkbox3.addEventHandler(this, "checkbox3_clicked1");
-  checkbox4 = new GCheckbox(this, (w-375), h-225, 140, 30);
-  checkbox4.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox4.setText("  White");
-  checkbox4.setTextBold();
-  checkbox4.setOpaque(false);
-  checkbox4.addEventHandler(this, "checkbox4_clicked1");
-  checkbox5 = new GCheckbox(this, (w-375), h-200, 140, 30);
-  checkbox5.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox5.setText("  Strobe");
-  checkbox5.setTextBold();
-  checkbox5.setOpaque(false);
-  checkbox5.addEventHandler(this, "checkbox5_clicked1");
-  checkbox6 = new GCheckbox(this, (w-375), h-175, 140, 30);
-  checkbox6.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox6.setText("  Disco");
-  checkbox6.setTextBold();
-  checkbox6.setOpaque(false);
-  checkbox6.addEventHandler(this, "checkbox6_clicked1");
+  togGroup1 = new GToggleGroup();
+  noBack_radio = new GOption(this, (w-375), h-275, 140, 30);
+  noBack_radio.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  noBack_radio.setText(" No Background");
+  noBack_radio.setTextBold();
+  noBack_radio.setOpaque(false);
+  noBack_radio.addEventHandler(this, "noBackg_clicked1");
+  black = new GOption(this, (w-375), h-250, 140, 30);
+  black.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  black.setText(" Black");
+  black.setTextBold();
+  black.setOpaque(false);
+  black.addEventHandler(this, "black_clicked1");
+  white = new GOption(this, (w-375), h-225, 140, 30);
+  white.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  white.setText("  White");
+  white.setTextBold();
+  white.setOpaque(false);
+  white.addEventHandler(this, "white_clicked1");
+  strobe = new GOption(this, (w-375), h-200, 140, 30);
+  strobe.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  strobe.setText(" Strobe");
+  strobe.setTextBold();
+  strobe.setOpaque(false);
+  strobe.addEventHandler(this, "strobe_clicked1");
+  disco = new GOption(this, (w-375), h-175, 140, 30);
+  disco.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
+  disco.setText("  Disco");
+  disco.setTextBold();
+  disco.setOpaque(false);
+  disco.addEventHandler(this, "disco_clicked1");
+  togGroup1.addControl(noBack_radio);
+  noBack_radio.setSelected(true);
+  togGroup1.addControl(black);
+  togGroup1.addControl(white);
+  togGroup1.addControl(strobe);
+  togGroup1.addControl(disco);
   label5 = new GLabel(this, (w-275), h-320, 200, 40);
   label5.setText("Effects");
   label5.setFont(ARIAL);
@@ -219,12 +226,12 @@ public void enableOptionsGUI(){
  
   checkbox1.setEnabled(true);
 
-  checkbox2.setEnabled(true);
-  checkbox3.setEnabled(true);
-  checkbox4.setEnabled(true);
-  checkbox5.setEnabled(true);
+  noBack_radio.setEnabled(true);
+  black.setEnabled(true);
+  white.setEnabled(true);
+  strobe.setEnabled(true);
 
-  checkbox6.setEnabled(true);
+  disco.setEnabled(true);
   
   checkbox7.setEnabled(true);
   checkbox8.setEnabled(true);
@@ -240,11 +247,11 @@ public void enableOptionsGUI(){
   textfield3.setVisible(true);
 
   checkbox1.setVisible(true);
-  checkbox2.setVisible(true);
-  checkbox3.setVisible(true);
-  checkbox4.setVisible(true);
-  checkbox5.setVisible(true);
-  checkbox6.setVisible(true);
+  noBack_radio.setVisible(true);
+  black.setVisible(true);
+  white.setVisible(true);
+  strobe.setVisible(true);
+  disco.setVisible(true);
   checkbox7.setVisible(true);
   checkbox8.setVisible(true);
   checkbox9.setVisible(true);
@@ -258,12 +265,12 @@ public void disableOptionsGUI(){
  
   checkbox1.setEnabled(false);
 
-  checkbox2.setEnabled(false);
-  checkbox3.setEnabled(false);
-  checkbox4.setEnabled(false);
-  checkbox5.setEnabled(false);
+  noBack_radio.setEnabled(false);
+  black.setEnabled(false);
+  white.setEnabled(false);
+  strobe.setEnabled(false);
 
-  checkbox6.setEnabled(false);
+  disco.setEnabled(false);
   
   checkbox7.setEnabled(false);
   checkbox8.setEnabled(false);
@@ -279,11 +286,11 @@ public void disableOptionsGUI(){
   textfield3.setVisible(false);
 
   checkbox1.setVisible(false);
-  checkbox2.setVisible(false);
-  checkbox3.setVisible(false);
-  checkbox4.setVisible(false);
-  checkbox5.setVisible(false);
-  checkbox6.setVisible(false);
+  noBack_radio.setVisible(false);
+  black.setVisible(false);
+  white.setVisible(false);
+  strobe.setVisible(false);
+  disco.setVisible(false);
   checkbox7.setVisible(false);
   checkbox8.setVisible(false);
   checkbox9.setVisible(false);
