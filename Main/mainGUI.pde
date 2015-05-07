@@ -350,8 +350,10 @@ public void openFile()
     {
       public void run()
       {
-        File curDir = file_chooser.getCurrentDirectory();
+        //File curDir = file_chooser.getCurrentDirectory();  //Unfortunately, the 'working directory' is considered to be wherever Processing itself is located
+        File curDir = new File(System.getProperty("user.home") + "\\Music");  //This will default the song selected to the 'Music' folder on the user's computer, if it exists; if it does not, it will default to Documents
         file_chooser.setCurrentDirectory(curDir);
+        file_chooser.setMultiSelectionEnabled(true);
         file_chooser.setDialogTitle("Choose a Song");
         file_chooser = checkType(file_chooser);
         int return_val = file_chooser.showOpenDialog(null);
@@ -359,15 +361,15 @@ public void openFile()
         if ( return_val == JFileChooser.APPROVE_OPTION)
         {
           
-          File file = file_chooser.getSelectedFile();
+          File[] file = file_chooser.getSelectedFiles();
           
           
           if (songLoaded) {
-            fileName.add(file.getAbsolutePath());
+            for (int i = 0; i < file.length; i++) fileName.add(file[i].getAbsolutePath());
             //currentSong = fileName.size() - 1;
           }
           else {
-            fileName.add(file.getAbsolutePath());
+            for (int i = 0; i < file.length; i++) fileName.add(file[i].getAbsolutePath());
             songLoaded = true;
             loadSong();
           }
