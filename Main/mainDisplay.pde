@@ -101,6 +101,7 @@ void mainDisplayDraw() {
       break;
     case 5:
       drawRainbow();
+      drawRibbon();
     
       break;
     case 6:
