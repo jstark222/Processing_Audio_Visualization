@@ -14,10 +14,10 @@ boolean create_explotion = false;
 boolean star_create = false;
 ArrayList<Ball> b = new ArrayList<Ball>();
 ArrayList<Integer> b3 = new ArrayList<Integer>();
-Meteor star;
 boolean starActive = false;//Set true to see star 
 int bSensitive = 50;
 int backgroundEffect = 3;
+
 
 
 void beatInitializer(){
@@ -32,8 +32,9 @@ void beatInitializer(){
 
 void mainDisplayInit() {  
   //loadSong();
- RainbowInit();
+  RainbowInit();
   ballinit();
+  starInit();
  
   DiscoInit();
  
@@ -68,6 +69,8 @@ void mainDisplayDraw() {
       BackgroundDiscoDraw();
       DiscoDraw();
       break;
+      
+    
 
      
   }
@@ -96,7 +99,6 @@ void mainDisplayDraw() {
     case 4:
       //BlackBackground();
       drawExplosion();
-      drawStar();
      
       break;
     case 5:
@@ -104,8 +106,8 @@ void mainDisplayDraw() {
       drawRibbon();
     
       break;
-    case 6:
-    
+    case 6://Disco Background
+      star_draw();
       break;
   } 
  drawRectangle();
@@ -118,8 +120,8 @@ void triggers() {
   if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; 
       
-      if(starActive)
-        setStar();
+//      if(starActive)
+//        setStar();
   
   } 
   if (beat.isSnare()) { 

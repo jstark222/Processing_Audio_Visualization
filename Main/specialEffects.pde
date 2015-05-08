@@ -14,7 +14,6 @@ void ballinit(){
     //b[i] = new Ball();
     b.add(new Ball());
   }
-  star = new Meteor();
   num_show = NUMBALLS;
 }
 
@@ -41,16 +40,7 @@ void ballsetspeed(){
     }
    changeColor();
 }
-void drawStar(){
-   if(star.get_touch() == true){
-    star_create = false;
-  }
-  
-  if(star_create == true){
-      star.display();
-   }  
-  
-}
+
 
 
   
@@ -88,16 +78,6 @@ void drawExplosion(){
 }
 
 
-void setStar(){
-  if(!star_create){
-      star = new Meteor();
-      star.setSpeed();
-      star_create = true;
-      
-  }
-  
- 
-}
 void changeColor(){
    color c = color(random(0,255),random(0,255),random(0,255),random(0,255));
    for (int i =0; i< num_show/3 ;i++){
