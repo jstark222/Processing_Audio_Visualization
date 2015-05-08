@@ -32,8 +32,9 @@ void beatInitializer(){
 
 void mainDisplayInit() {  
   //loadSong();
-
+ RainbowInit();
   ballinit();
+ 
   DiscoInit();
  
 }
@@ -99,7 +100,7 @@ void mainDisplayDraw() {
      
       break;
     case 5:
-    
+      drawRainbow();
     
       break;
     case 6:

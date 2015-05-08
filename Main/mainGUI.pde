@@ -395,6 +395,9 @@ void loadSong()
 {
   player = minim.loadFile(fileName.get(currentSong));  //This method functions much the same way as loadImage()
   player.play();
+  fft = new FFT(player.bufferSize(), player.sampleRate());  //The two parameters simply return the respective values from the audio input
+  fft.logAverages(60, 7);  //Groups frequency bands by octave; allows specification of the size of the smallest octave to use (in Hertz) and how many bands to split each octave into 
+   wdth = w/fft.avgSize();
 }
 
 

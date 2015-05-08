@@ -7,14 +7,14 @@ import g4p_controls.*;
 
 Minim minim;         //The Minim class contains methods for obtaining and playing audio input
 AudioPlayer player;  //Provides a self-contained way of playing a sound file by streaming it from disk. It provides methods for playing & looping the file, as well as methods for setting the position in the file and looping a section of the file.
-FFT fft;             //FFT = Fast Fourier Transform - performs a Fourier Transform on audio data to generate a frequency spetrum
+
 
 
 ArrayList<String> fileName = new ArrayList(1);
 String songName;
 int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
-int effect = 4;
+int effect = 5;
 int w = 0;
 int h = 0;
 boolean optionBool = false;
