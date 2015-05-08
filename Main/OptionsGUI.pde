@@ -219,6 +219,7 @@ public void createOptionsGUI(){
 }
 
 public void enableOptionsGUI(){
+  drawRectangle();
  
   textfield1.setEnabled(true);
   textfield2.setEnabled(true);

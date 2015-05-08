@@ -74,11 +74,11 @@ void drawRibbon() {
   strokeWeight(1);
   stroke(255, 0, 0);
   
-  for (int i = 0; i < player.mix.size()-1; i++) {
+  for (int i = w/6; i < player.mix.size()-1 + w/6; i++) {
     stroke(255, i/2, i/30);
-    line(i, h/2 - 50 + player.mix.get(i) * 50, i + 1, h/2 + player.mix.get(i+1));
+    line(i, h/2 - 50 + player.mix.get(i - w/6) * 50, i + 1, h/2 + player.mix.get(i+1 - w/6));
     stroke(i-20, i-30, 255);
-    line(i, h/2 + player.mix.get(i+1), i + 1, h/2 + player.mix.get(i) * 50);
+    line(i, h/2 + player.mix.get(i+1 - w/6), i + 1, h/2 + player.mix.get(i - w/6) * 50);
   }
   
   /*background(0);

@@ -88,6 +88,7 @@ public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
     background(0);
+    drawRectangle();
     player.pause();
     currentSong = 0;
     songLoaded = false;
@@ -456,7 +457,7 @@ class ExtensionFileFilter extends FileFilter {
 
 void mouseClicked() {  //This implements slider click functionality; this was implemented because event handlers for the slider were causing audio hiccups.
   if (mouseX >= 2  &&  mouseX <= width  &&  initSongSelected) {
-    if (mouseY > (h - 50)  &&  mouseY < h  &&  player.isPlaying()) {
+    if (mouseY > (h - 30)  &&  mouseY < (h - 18)  &&  player.isPlaying()) {
       float mx = map(mouseX, 0, width, 0.0, 1.0);
       slider1.setValue(map(mouseX, 0, width, 0, 1.0));
       player.cue(int(map(mx, 0.0, 1.0, 0, player.length())));
