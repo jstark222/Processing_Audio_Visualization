@@ -47,7 +47,7 @@ void mainInitializer(){
   createGUI();
   
   enableGui(); 
-  //drawSongSlider();
+  drawSongSlider();
   mainDisplayInit();
   drawRectangle();
  

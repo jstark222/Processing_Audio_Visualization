@@ -55,7 +55,6 @@ void drawRainbow() {
 void drawRibbon() {
   int lineLength, thickness = 5, space = thickness + 1;
   
-  background(0);
   strokeWeight(thickness);
   
   fft.forward(player.mix);

@@ -83,15 +83,7 @@ public void optionsButton_click(GButton source, GEvent event) {
 
   }
 } 
-/*
-public void slider1_click(GSlider source, GEvent event) { 
-  if (source == slider1  &&  mRelease) {  //This is a work-around for the double button clicked effect
-    player.cue(int(map(slider1.getValueF(), 0.0, 1.0, 0, player.length())));
-  }
-  
-  
-} 
-*/
+
 public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
@@ -255,7 +247,6 @@ void drawSongSlider(){
   slider1.setLimits(0.0, 0.0, 1.0);
   slider1.setNumberFormat(G4P.DECIMAL, 2);
   slider1.setOpaque(false);
-  slider1.addEventHandler(this, "slider1_click");
   showProgress = true;
 }
 void mouseReleased(){
@@ -462,3 +453,13 @@ class ExtensionFileFilter extends FileFilter {
   }
 }
 //=======================================================================
+
+void mouseClicked() {  //This implements slider click functionality; this was implemented because event handlers for the slider were causing audio hiccups.
+  if (mouseX >= 2  &&  mouseX <= width  &&  initSongSelected) {
+    if (mouseY > (h - 50)  &&  mouseY < h  &&  player.isPlaying()) {
+      float mx = map(mouseX, 0, width, 0.0, 1.0);
+      slider1.setValue(map(mouseX, 0, width, 0, 1.0));
+      player.cue(int(map(mx, 0.0, 1.0, 0, player.length())));
+    }
+  }
+}
