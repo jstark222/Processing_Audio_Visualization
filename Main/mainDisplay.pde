@@ -47,7 +47,7 @@ void mainDisplayDraw() {
   }
   mRelease = false;
   beat.setSensitivity(bSensitive);
-  slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
+  //slider1.setValue(map(player.position(), 0, player.length(), 0, 1.0));
   
   switch(backgroundEffect)
   {
@@ -100,7 +100,7 @@ void mainDisplayDraw() {
      
       break;
     case 5:
-      drawRainbow();
+      //drawRainbow();
       drawRibbon();
     
       break;

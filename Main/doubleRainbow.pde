@@ -58,28 +58,28 @@ void drawRibbon() {
   background(0);
   strokeWeight(thickness);
   
-  fft[currentSong].forward(audioPlayer[currentSong].mix);
+  fft.forward(player.mix);
   stroke(0, 0, 255);
   float maxVal = 0.0, minVal = 10000000000.0;
   
-  for (int i = 0; i < fft[currentSong].specSize(); i++) {
-    if (fft[currentSong].getBand(i) > maxVal) maxVal = fft[currentSong].getBand(i);
-    else if (fft[currentSong].getBand(i) < minVal) minVal = fft[currentSong].getBand(i); 
+  for (int i = 0; i < fft.specSize(); i++) {
+    if (fft.getBand(i) > maxVal) maxVal = fft.getBand(i);
+    else if (fft.getBand(i) < minVal) minVal = fft.getBand(i); 
   }
-  
-  for (int i = 0; i < fft[currentSong].specSize(); i++) {
-    lineLength = (int) map(fft[currentSong].getBand(i), 0, maxVal, 0, 3 * height / 4);
-    line(space * i, height, space * i, height - lineLength);
+  /*
+  for (int i = 0; i < fft.specSize(); i++) {
+    lineLength = (int) map(fft.getBand(i), 0, maxVal, 0, 3 * h / 4);
+    line(space * i, h, space * i, h - lineLength);
   }
-  
+  */
   strokeWeight(1);
   stroke(255, 0, 0);
   
-  for (int i = 0; i < audioPlayer[currentSong].mix.size()-1; i++) {
+  for (int i = 0; i < player.mix.size()-1; i++) {
     stroke(255, i/2, i/30);
-    line(i, height/2 - 50 + audioPlayer[currentSong].mix.get(i) * 50, i + 1, height/2 + audioPlayer[currentSong].mix.get(i+1));
+    line(i, h/2 - 50 + player.mix.get(i) * 50, i + 1, h/2 + player.mix.get(i+1));
     stroke(i-20, i-30, 255);
-    line(i, height/2 + audioPlayer[currentSong].mix.get(i+1), i + 1, height/2 + audioPlayer[currentSong].mix.get(i) * 50);
+    line(i, h/2 + player.mix.get(i+1), i + 1, h/2 + player.mix.get(i) * 50);
   }
   
   /*background(0);

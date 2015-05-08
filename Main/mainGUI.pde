@@ -83,7 +83,7 @@ public void optionsButton_click(GButton source, GEvent event) {
 
   }
 } 
-
+/*
 public void slider1_click(GSlider source, GEvent event) { 
   if (source == slider1  &&  mRelease) {  //This is a work-around for the double button clicked effect
     player.cue(int(map(slider1.getValueF(), 0.0, 1.0, 0, player.length())));
@@ -91,10 +91,11 @@ public void slider1_click(GSlider source, GEvent event) {
   
   
 } 
+*/
 public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
-   
+    background(0);
     player.pause();
     currentSong = 0;
     songLoaded = false;
