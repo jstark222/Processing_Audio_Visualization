@@ -23,7 +23,7 @@ void DiscoInit() {
 }
 
 void BackgroundDiscoDraw(){
-    image(img2, slowspin-800, 0);
+    image(img2, slowspin-w, 0);
     image(img2, slowspin, 0);
 }
 
@@ -32,30 +32,38 @@ void BackgroundStrobe () {
   if(blackwhiteSwitch)
   {
     background(0);
-    //blackwhiteSwitch = false; 
+
   }
   else
   {
-    background(255);
-    //blackwhiteSwitch = true;
+    background(233);
+ 
   } 
    
   
 } 
+
+void BlackBackground(){
+ background(0); 
+  
+}
+void WhiteBackground(){
+ background(255); 
+  
+}
 void DiscoDraw() {
-  //background(0);
+  
  
 
-  if(slowspin >= 800)
+  if(slowspin >= w)
   {
     slowspin = 0;
-    //if(input < 3)
-      //input += 0.1;
+
   
  
   }
  
-  slowspin = slowspin + input + (input/2);
+  slowspin = slowspin + input;
   
 
   
