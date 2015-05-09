@@ -103,11 +103,14 @@ class MenuActionListener implements ActionListener {
         {
             background(0);
             disableGui();
+            disableOptionsGUI();
             showControls = false;
         }
         else
         {
             enableGui();
+            drawRectangle();
+            enableOptionsGUI();
             showControls = true;
           
         }
