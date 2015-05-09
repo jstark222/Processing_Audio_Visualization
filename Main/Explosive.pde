@@ -24,7 +24,7 @@ class Explosive{
     
     
     //set a to trigger, when the background is black, use this draw
-    if(lifespan_white != 0){
+    if(lifespan_white != 0 && blackwhiteSwitch){
       fill(c);
       //noFill();
       stroke(c);
@@ -42,7 +42,7 @@ class Explosive{
   
   
   //set a to trigger, when the background is white, use this draw
-  if(lifespan_black != 255){
+  if(lifespan_black != 255 && blackwhiteSwitch == false){
       fill(c);
       //noFill();
       stroke(c);
