@@ -107,7 +107,7 @@ public void actButton_click(GButton source, GEvent event) {
         bSensitive = Integer.parseInt(textfield1.getText());
         num_show = Integer.parseInt(textfield3.getText());
         ballreInit();
-        speed = Integer.parseInt(textfield2.getText());c
+        speed = Integer.parseInt(textfield2.getText());
    }
 }
 // Create all the GUI controls. 

@@ -27,6 +27,7 @@ class Ball{
       noFill();
     }
     stroke(c);
+    strokeWeight(1);
     ellipse(xpos,ypos,diameter,diameter);
     xpos += xspeed;
     ypos += yspeed;
