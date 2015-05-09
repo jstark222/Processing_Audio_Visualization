@@ -17,6 +17,16 @@ void ballinit(){
   num_show = NUMBALLS;
 }
 
+void ballreInit(){
+ b.clear();
+ for (int i =0; i<num_show;i++){
+    //b[i] = new Ball();
+    b.add(new Ball());
+  }
+ 
+  
+}
+
 void balldraw(){
   fill(255,100);
   //fill(0,9);

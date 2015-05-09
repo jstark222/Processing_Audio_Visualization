@@ -70,18 +70,18 @@ void drawRibbon() {
   strokeWeight(1);
   stroke(255, 0, 0);
   
-  for (int i = w/6; i < player.mix.size()-1 + w/6; i++) {
-    stroke(255, i/2, i/30);
-    line(i, h/2 - 50 + player.mix.get(i - w/6) * 50, i + 1, h/2 + player.mix.get(i+1 - w/6));
+  for (int i = w/4; i < player.mix.size()-1 + w/5; i++) {
+    stroke(i-i/2, i/2, i/50);
+    line(i, h/3 - 50 + player.mix.get(i - w/5) * 50, i + 1, h/3 + player.mix.get(i+1 - w/5));
     stroke(i-20, i-30, 255);
-    line(i, h/2 + player.mix.get(i+1 - w/6), i + 1, h/2 + player.mix.get(i - w/6) * 50);
+    line(i, h/3 + player.mix.get(i+1 - w/5), i + 1, h/3 + player.mix.get(i - w/5) * 50);
   }
   
   /*background(0);
   fft.forward(audioPlayer[currentSong].mix);
   stroke(0, 0, 255);
   
-  for (int i = 0; i < fft.specSize(); i++) {
+  for (int i = 0; i <ifft.specSize(); i++) {
     line(i, height, i, height - fft.getBand(i) * 4);
     line(i + width/2, height, i + width/2, height - fft.getBand(i) * 4);
   }

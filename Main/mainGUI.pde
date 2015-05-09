@@ -305,36 +305,6 @@ void mousePressed() {
 
 }
 
-//FOR TESTING PURPOSES ONLY  DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//==================================================================
-void keyPressed() {
-  switch(key) {
-    case '1':
-      //mode = 1;
-      addme++;
-      break;
-    case '2':
-      mode = 2;
-      break;
-    case '3':
-      mode = 3;
-      break;
-    case 'q':
-      effect = 1;
-      break;
-    case 'w':
-      effect = 2;
-      break;
-    case 'e':
-      effect = 3;
-      break;  
-    case 's':
-      sensitivityInput = "999";
-      beat.setSensitivity(int(sensitivityInput));
-      println("Sensitivity is: " + sensitivityInput);
-  }
-}
-//====================================================================
 
 //FILE OPENER
 //====================================================================
