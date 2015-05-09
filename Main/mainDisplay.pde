@@ -76,40 +76,34 @@ void mainDisplayDraw() {
   }
 
   
-  switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
+  if(checkbox10.isSelected())//Rainbow Checked
   {
-    case 0://Default
-      balldraw();
-      break;
-    case 1:
-      
-       balldraw();
-      break;
-    case 2:
-      BackgroundDiscoDraw();
-      balldraw();
-      DiscoDraw();
-      break;
-    case 3:
-     
-      BackgroundDiscoDraw();
-      balldraw();
-     
-      break;
-    case 4:
-      //BlackBackground();
-      drawExplosion();
-     
-      break;
-    case 5:
-      //drawRainbow();
-      drawRibbon();
     
-      break;
-    case 6://Disco Background
-      star_draw();
-      break;
-  } 
+      drawRainbow();
+    
+  }
+  
+  if(checkbox7.isSelected())
+  {
+    
+     balldraw(); 
+    
+  }
+  
+  if(checkbox8.isSelected())
+  {
+    
+     drawExplosion(); 
+    
+  }
+  
+  if(checkbox9.isSelected())
+  {
+     drawRibbon(); 
+    
+  }
+  
+
  drawRectangle();
 
 }
