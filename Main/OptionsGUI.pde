@@ -206,13 +206,13 @@ public void createOptionsGUI(){
   checkbox8.addEventHandler(this, "checkbox8_clicked1");
   checkbox9 = new GCheckbox(this, (w-220), h-225, 140, 30);
   checkbox9.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox9.setText("  Star Streaming");
+  checkbox9.setText("  Waveform");
   checkbox9.setTextBold();
   checkbox9.setOpaque(false);
   checkbox9.addEventHandler(this, "checkbox9_clicked1");
   checkbox10 = new GCheckbox(this, (w-220), h-200, 140, 30);
   checkbox10.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox10.setText("  Rainbow Waveform");
+  checkbox10.setText("  Waveform Melt");
   checkbox10.setTextBold();
   checkbox10.setOpaque(false);
   checkbox10.addEventHandler(this, "checkbox10_clicked1");

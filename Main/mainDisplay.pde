@@ -69,9 +69,6 @@ void mainDisplayDraw() {
       BackgroundDiscoDraw();
       DiscoDraw();
       break;
-      
-    
-
      
   }
 
@@ -83,28 +80,28 @@ void mainDisplayDraw() {
     
   }
   
-  if(checkbox7.isSelected())
+  if(checkbox7.isSelected())//ball draw checked
   {
     
      balldraw(); 
     
   }
   
-  if(checkbox8.isSelected())
+  if(checkbox8.isSelected())//Explosion draw
   {
     
      drawExplosion(); 
     
   }
   
-  if(checkbox9.isSelected())
+  if(checkbox9.isSelected())//Draw Ribbon
   {
      drawRibbon(); 
     
   }
   
 
- drawRectangle();
+ //drawRectangle();
 
 }
 

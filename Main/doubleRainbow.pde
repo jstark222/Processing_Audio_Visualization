@@ -9,15 +9,7 @@ float rWidth, rHeight;  //This values are used to make the fade image appear sli
 
 
 void RainbowInit() {
-  
-  
- 
- 
-  stroke(255);
-  strokeWeight(wdth);
-  strokeCap(SQUARE);  //Default is ROUND, which does not look the greatest
-  
-  background(0);
+  //background(0);
   fade1 = get(0, 0, w/2, h);  //Initiates fade to what the window is currently displaying
   fade2 = get(w/2, 0, w, h);
 }
@@ -25,6 +17,10 @@ void RainbowInit() {
 
 void drawRainbow() {
   //background(0);
+  
+  stroke(255);
+  strokeWeight(wdth);
+  strokeCap(SQUARE);  //Default is ROUND, which does not look the greatest
   image(fade1, (w - rWidth) / 2 - 2, 0, rWidth, rHeight);
   image(fade2, w / 2 + 2, 0, rWidth, rHeight);
   
