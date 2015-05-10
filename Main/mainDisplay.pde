@@ -118,11 +118,13 @@ void triggers() {
   if (beat.isSnare()) { 
     snareCounter++; 
     create_explotion = true;
+    if(strobe_enable == true){
       if (snareCounter % 2 == 0) {
          if(blackwhiteSwitch){blackwhiteSwitch = false;}
         else{blackwhiteSwitch = true;}
       
       } //Call function
+    }
   }
   if (kickCounter % 5 == 0) {
       

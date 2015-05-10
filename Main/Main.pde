@@ -36,7 +36,6 @@ void setup() {
   size(w, h, JAVA2D);
   textSize(16);
   mainInitializer();
-
   
 }
 
@@ -49,7 +48,9 @@ void mainInitializer(){
   enableGui(); 
   drawSongSlider();
   mainDisplayInit();
+  background(0);
   drawRectangle();
+  
  
   
 }

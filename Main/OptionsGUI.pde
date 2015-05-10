@@ -22,6 +22,7 @@ GCheckbox checkbox8;
 GCheckbox checkbox9; 
 GCheckbox checkbox10;
 GButton actButton;
+boolean strobe_enable = false;
 
 
 
@@ -65,22 +66,27 @@ public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkb
 
 public void noBackg_clicked1(GOption source, GEvent event) { //_CODE_:checkbox2:666692:
    backgroundEffect = 1;
+   strobe_enable = false;
 } //_CODE_:checkbox2:666692:
 
 public void black_clicked1(GOption source, GEvent event) { //_CODE_:checkbox3:545766:
   backgroundEffect = 0;
+  strobe_enable = false;
 } //_CODE_:checkbox3:545766:
 
 public void white_clicked1(GOption source, GEvent event) { //_CODE_:checkbox4:718822:
   backgroundEffect = 2;
+  strobe_enable = false;
 } //_CODE_:checkbox4:718822:
 
 public void strobe_clicked1(GOption source, GEvent event) { //_CODE_:checkbox5:264324:
+  strobe_enable = true;
   backgroundEffect = 3;
 } //_CODE_:checkbox5:264324:
 
 public void disco_clicked1(GOption source, GEvent event) { //_CODE_:checkbox6:373425:
   backgroundEffect = 4;
+  strobe_enable = false;
 } //_CODE_:checkbox6:373425:
 
 public void checkbox7_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox7:388812:
@@ -183,9 +189,9 @@ public void createOptionsGUI(){
   disco.setTextBold();
   disco.setOpaque(false);
   disco.addEventHandler(this, "disco_clicked1");
-  togGroup1.addControl(noBack_radio);
-  noBack_radio.setSelected(true);
+  togGroup1.addControl(noBack_radio); 
   togGroup1.addControl(black);
+  black.setSelected(true); // change the ratio button 
   togGroup1.addControl(white);
   togGroup1.addControl(strobe);
   togGroup1.addControl(disco);
