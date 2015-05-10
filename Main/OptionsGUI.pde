@@ -6,8 +6,6 @@ import java.awt.*;
 
 GLabel label1; 
 GTextField textfield1; 
-GLabel label2; 
-GTextField textfield2; 
 GLabel label3; 
 GTextField textfield3; 
 GCheckbox checkbox1; 
@@ -31,7 +29,7 @@ void drawRectangle(){
   if(!optionBool)
   {
      fill(233); 
-     rect(w-425, h-600, 400, 500); 
+     rect(w-425, h-520, 400, 500); 
      noFill();
   }
   
@@ -107,7 +105,6 @@ public void actButton_click(GButton source, GEvent event) {
         bSensitive = Integer.parseInt(textfield1.getText());
         num_show = Integer.parseInt(textfield3.getText());
         ballreInit();
-        speed = Integer.parseInt(textfield2.getText());
    }
 }
 // Create all the GUI controls. 
@@ -120,24 +117,16 @@ public void createOptionsGUI(){
   if(frame != null)
     frame.setTitle("Options");
   Font ARIAL = new Font("ARIAL", Font.PLAIN, 14);
-  label1 = new GLabel(this, (w-400), h-550, 124, 30);
+  label1 = new GLabel(this, (w-400), h-500, 124, 30);
   label1.setText("Beat Sensitivity");
   label1.setFont(ARIAL);
   label1.setTextBold();
   label1.setOpaque(false);
-  textfield1 = new GTextField(this, (w-260), h-545, 90, 20, G4P.SCROLLBARS_NONE);
+  textfield1 = new GTextField(this, (w-260), h-495, 90, 20, G4P.SCROLLBARS_NONE);
   textfield1.setOpaque(true);
   textfield1.setText(String.valueOf(bSensitive));
   textfield1.addEventHandler(this, "textfield1_change1");
-  label2 = new GLabel(this, (w-400), h-500, 124, 30);
-  label2.setText("Ball Speed");
-  label2.setFont(ARIAL);
-  label2.setTextBold();
-  label2.setOpaque(false);
-  textfield2 = new GTextField(this, (w-260), h-495, 90, 20, G4P.SCROLLBARS_NONE);
-  textfield2.setOpaque(true);
-  textfield2.setText(String.valueOf(speed));
-  textfield2.addEventHandler(this, "textfield2_change1");
+  //The label2, ball speed is deleted
   label3 = new GLabel(this, (w-400), h-450, 124, 30);
   label3.setText("Number of Balls");
   label3.setFont(ARIAL);
@@ -236,7 +225,6 @@ public void enableOptionsGUI(){
   drawRectangle();
  
   textfield1.setEnabled(true);
-  textfield2.setEnabled(true);
   textfield3.setEnabled(true);
   actButton.setEnabled(true);
  
@@ -254,12 +242,10 @@ public void enableOptionsGUI(){
   checkbox9.setEnabled(true);
   checkbox10.setEnabled(true);
   label1.setVisible(true);
-  label2.setVisible(true);
   label3.setVisible(true);
   label4.setVisible(true);
   label5.setVisible(true);
   textfield1.setVisible(true);
-  textfield2.setVisible(true);
   textfield3.setVisible(true);
   actButton.setVisible(true);
 
@@ -277,7 +263,6 @@ public void enableOptionsGUI(){
 
 public void disableOptionsGUI(){
  textfield1.setEnabled(false);
-  textfield2.setEnabled(false);
   textfield3.setEnabled(false);
   actButton.setEnabled(false);
  
@@ -295,12 +280,10 @@ public void disableOptionsGUI(){
   checkbox9.setEnabled(false);
   checkbox10.setEnabled(false);
   label1.setVisible(false);
-  label2.setVisible(false);
   label3.setVisible(false);
   label4.setVisible(false);
   label5.setVisible(false);
   textfield1.setVisible(false);
-  textfield2.setVisible(false);
   textfield3.setVisible(false);
   actButton.setVisible(false);
 
