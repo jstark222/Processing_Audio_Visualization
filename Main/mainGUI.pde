@@ -37,6 +37,7 @@ GSlider slider1;
 boolean showControls = true;
 boolean showProgress = true;
 boolean showOptions = false;
+boolean stop = false;
 
 
 
@@ -47,15 +48,29 @@ JFileChooser file_chooser = new JFileChooser();
 
 public void playButton_click(GButton source, GEvent event) { 
   if (source == playButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
- 
-    if (!player.isPlaying()  &&  initSongSelected) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+    if (!player.isPlaying()  &&  initSongSelected  &&  (player.position() >= player.length() - 1000)) {
+      stop = false;
+      loadSong();
+      player.play();
+    
+    }
+    else if (!player.isPlaying()  &&  initSongSelected) {
+      stop = false;
+      player.play();
+    }
+    else if (player.isPlaying()) {
+      player.pause();
+    }
   }
 } 
 
 public void stopButton_click(GButton source, GEvent event) {
   
   if (source == stopButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    stop = true;
     player.pause();
+    player.cue(player.length());
+    
   }
 } 
 
@@ -143,7 +158,11 @@ class MenuActionListener implements ActionListener {
     }
     else if(e.getActionCommand() == "Play Previous Song")
     {
-      if (currentSong > 0) {
+      if ((player.position() >= player.length() - 1000)  &&  currentSong == fileName.size() - 1) {
+        loadSong();
+        player.play();
+      }
+      else if (currentSong > 0) {
         currentSong--;
         player.pause();
         loadSong();
@@ -261,7 +280,7 @@ public void createGUI(){
 }
 
 void drawSongSlider(){
-  slider1 = new GSlider(this, 2, (h - 50), width, 53, 10.0);
+  slider1 = new GSlider(this, 2, (h - 50), w - 2, 53, 10.0);
   slider1.setShowLimits(false);
   slider1.setTextOrientation(G4P.ORIENT_LEFT);
   slider1.setLimits(0.0, 0.0, 1.0);

@@ -70,12 +70,18 @@ void draw() {
         hueVal = (hueVal > 255) ? 0 : hueVal + 1;
         
         
-        if ((player.position() >= player.length() - 1000)  &&  currentSong < fileName.size() -1) {
+        if ((player.position() >= player.length() - 1000)  &&  currentSong < fileName.size() - 1  &&  !stop) {
+          slider1.setValue(w - 2);
           currentSong++;
           player.pause();
           loadSong();
           player.play();
         }
+        else if ((player.position() >= player.length() - 1000)  &&  currentSong == fileName.size() -1) {
+          player.pause();
+          slider1.setValue(w - 2);
+        }
+        else if (stop) { slider1.setValue(w - 2); }
       }
       break;
     case 2: //Options Menu
