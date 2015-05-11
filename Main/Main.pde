@@ -14,7 +14,6 @@ ArrayList<String> fileName = new ArrayList(1);
 String songName;
 int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
-int effect = 5;
 int w = 0;
 int h = 0;
 boolean optionBool = false;
@@ -31,6 +30,7 @@ boolean sketchFullScreen(){
 void setup() {
   w = displayWidth;
   h = displayHeight;
+  background(0);
   //w = 800;
   //h = 800;
   size(w, h, JAVA2D);
@@ -49,7 +49,7 @@ void mainInitializer(){
   drawSongSlider();
   mainDisplayInit();
   background(0);
-  drawRectangle();
+  //drawRectangle();
   
  
   

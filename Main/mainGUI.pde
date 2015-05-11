@@ -36,6 +36,7 @@ GSlider slider1;
 //Booleans control toggle of displayed Controls/ProgressBar
 boolean showControls = true;
 boolean showProgress = true;
+boolean showOptions = false;
 
 
 
@@ -88,7 +89,7 @@ public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
     background(0);
-    drawRectangle();
+    //drawRectangle();
     player.pause();
     currentSong = 0;
     songLoaded = false;
@@ -103,14 +104,14 @@ class MenuActionListener implements ActionListener {
         {
             background(0);
             disableGui();
-            disableOptionsGUI();
+            //disableOptionsGUI();
             showControls = false;
         }
         else
         {
             enableGui();
-            drawRectangle();
-            enableOptionsGUI();
+            //drawRectangle();
+            //enableOptionsGUI();
             showControls = true;
           
         }
@@ -149,6 +150,20 @@ class MenuActionListener implements ActionListener {
         //player.play();
       }
     }
+    else if(e.getActionCommand() == "Show/Hide Options")
+    {
+      if(showOptions)
+      {
+         disableOptionsGUI();
+        showOptions = false;
+      }
+      else
+     {
+        enableOptionsGUI();
+        showOptions = true;
+      
+     } 
+    }
     else if(e.getActionCommand() == "Exit")
     {
        mode = 3;
@@ -167,11 +182,11 @@ public void enableGui(){
  playButton.setVisible(true);
  stopButton.setVisible(true);
  songButton.setVisible(true);
- optionsButton.setVisible(true);
+ //optionsButton.setVisible(true);
  clearButton.setVisible(true);
  playButton.setEnabled(true);
  stopButton.setEnabled(true);
- optionsButton.setEnabled(true);
+ //optionsButton.setEnabled(true);
  songButton.setEnabled(true); 
  clearButton.setEnabled(true);
 }
@@ -180,15 +195,16 @@ public void disableGui(){
  playButton.setVisible(false);
  stopButton.setVisible(false);
  songButton.setVisible(false);
- optionsButton.setVisible(false);
+ //optionsButton.setVisible(false);
  clearButton.setVisible(false);
  playButton.setEnabled(false);
  stopButton.setEnabled(false);
- optionsButton.setEnabled(false);
+ //optionsButton.setEnabled(false);
  songButton.setEnabled(false);
  clearButton.setEnabled(false);
   
 }
+
 
 public void enableProgressBar(){
   slider1.setVisible(true);
@@ -230,17 +246,17 @@ public void createGUI(){
   clearButton.addEventHandler(this, "clearButton_click");
   clearButton.fireAllEvents(true);
   
-  songButton = new GButton(this, (w-375), h-70, 100, 30);
+  songButton = new GButton(this, (575), h-70, 100, 30);
   songButton.setText("Add Songs");
   songButton.setTextBold();
   songButton.addEventHandler(this, "songButton_click");
   songButton.fireAllEvents(true);
   
-  optionsButton = new GButton(this, w-225, h-70, 100, 30);
-  optionsButton.setText("Options");
-  optionsButton.setTextBold();
-  optionsButton.addEventHandler(this, "optionsButton_click");
-  optionsButton.fireAllEvents(true);
+ // optionsButton = new GButton(this, w-225, h-70, 100, 30);
+ // optionsButton.setText("Options");
+ // optionsButton.setTextBold();
+ // optionsButton.addEventHandler(this, "optionsButton_click");
+ // optionsButton.fireAllEvents(true);
   
 }
 
@@ -281,6 +297,10 @@ void mousePressed() {
     JMenuItem menuItem2 = new JMenuItem("Show/Hide Progress Bar");
     menuItem2.addActionListener(new MenuActionListener());
     popup.add(menuItem2);
+    
+    JMenuItem menuItem6 = new JMenuItem("Show/Hide Options");
+    menuItem6.addActionListener(new MenuActionListener());
+    popup.add(menuItem6);
     
     JMenuItem menuItem3 = new JMenuItem("Play Next Song");
     menuItem3.addActionListener(new MenuActionListener());

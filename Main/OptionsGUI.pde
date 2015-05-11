@@ -25,7 +25,7 @@ GButton actButton;
 boolean strobe_enable = false;
 
 
-
+/*
 void drawRectangle(){
   if(!optionBool)
   {
@@ -35,23 +35,6 @@ void drawRectangle(){
   }
   
 }
-/*
-public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textfield1:910149:
-     println("textfield3 - GTextField >> GEvent." + event + " @ " + millis());
-     println("Integer " + textfield1.getText());
-    if (source == textfield1  &&  event == GEvent.CHANGED && textfield1.getText() != "" && Integer.parseInt(textfield1.getText()) > 10) {  //This is a work-around for the double button clicked effect
-      println("HERE");
-      bSensitive = Integer.parseInt(textfield2.getText());
-   }
-} //_CODE_:textfield1:910149:
-
-public void textfield2_change1(GTextField source, GEvent event) { //_CODE_:textfield2:852425:
-  println("textfield3 - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:textfield2:852425:
-
-public void textfield3_change1(GTextField source, GEvent event) { //_CODE_:textfield3:283395:
-  println("textfield3 - GTextField >> GEvent." + event + " @ " + millis());
-} //_CODE_:textfield3:283395:
 */
 public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox1:856806:
    if(fillTrue)
@@ -228,7 +211,6 @@ public void createOptionsGUI(){
 }
 
 public void enableOptionsGUI(){
-  drawRectangle();
  
   textfield1.setEnabled(true);
   textfield3.setEnabled(true);
