@@ -16,7 +16,7 @@ int currentSong = 0, mode = 1, hueVal = 0;
 Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
 int w = 0;
 int h = 0;
-boolean optionBool = false;
+boolean optionBool = true;
 boolean fillTrue = false;
 
 
@@ -49,8 +49,6 @@ void mainInitializer(){
   drawSongSlider();
   mainDisplayInit();
   background(0);
-  //drawRectangle();
-  
  
   
 }
@@ -86,6 +84,8 @@ void draw() {
         }
         else if (stop) { slider1.setValue(w - 2); }
       }
+      
+      if (!initSongSelected  &&  showOptions) { drawRectangle(); }
       break;
     case 2: //Options Menu
       background(0);

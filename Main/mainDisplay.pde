@@ -16,7 +16,7 @@ ArrayList<Ball> b = new ArrayList<Ball>();
 ArrayList<Integer> b3 = new ArrayList<Integer>();
 boolean starActive = false;//Set true to see star 
 int bSensitive = 50;
-int backgroundEffect = 3;
+int backgroundEffect = 0;
 
 
 
@@ -57,7 +57,7 @@ void mainDisplayDraw() {
       BlackBackground();
       break;
     case 1://No Background
-      
+      if (showOptions) { drawRectangle(); }
       break;
     case 2://White Background
       WhiteBackground();

@@ -36,7 +36,7 @@ GSlider slider1;
 //Booleans control toggle of displayed Controls/ProgressBar
 boolean showControls = true;
 boolean showProgress = true;
-boolean showOptions = false;
+boolean showOptions = true;
 boolean stop = false;
 
 
@@ -85,16 +85,16 @@ public void songButton_click(GButton source, GEvent event) {
 public void optionsButton_click(GButton source, GEvent event) { 
   
   if (source == optionsButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-      if(optionBool)
+      if(!optionBool)
       {
-         enableOptionsGUI();
-        optionBool = false;  
+        enableOptionsGUI();
+        optionBool = true;
       }
       else
       {
          disableOptionsGUI(); 
-         optionBool = true;
-         
+         optionBool = false;
+         if (backgroundEffect == 1) { background(0); }
       }
 
   }
@@ -117,7 +117,7 @@ class MenuActionListener implements ActionListener {
     {
         if(showControls)
         {
-            background(0);
+            if (!initSongSelected) { background(0); }
             disableGui();
             //disableOptionsGUI();
             showControls = false;
@@ -136,7 +136,7 @@ class MenuActionListener implements ActionListener {
     {
         if(showProgress)
         {
-            background(0);
+            if (!initSongSelected) { background(0); }
             disableProgressBar();
             showProgress = false;
         }
@@ -173,14 +173,15 @@ class MenuActionListener implements ActionListener {
     {
       if(showOptions)
       {
-         disableOptionsGUI();
+        disableOptionsGUI();
         showOptions = false;
+        if (!initSongSelected  ||  backgroundEffect == 1) { background(0); }
       }
       else
      {
         enableOptionsGUI();
         showOptions = true;
-      
+        if (!initSongSelected) { drawRectangle(); }
      } 
     }
     else if(e.getActionCommand() == "Exit")

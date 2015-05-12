@@ -25,17 +25,17 @@ GButton actButton;
 boolean strobe_enable = false;
 
 
-/*
+
 void drawRectangle(){
-  if(!optionBool)
+  if(optionBool)
   {
      fill(233); 
-     rect(w-425, h-520, 400, 500); 
+     rect(w-425, h-520, 400, 450); 
      noFill();
   }
   
 }
-*/
+
 public void checkbox1_clicked1(GCheckbox source, GEvent event) { //_CODE_:checkbox1:856806:
    if(fillTrue)
     {
