@@ -4,7 +4,8 @@ class Explosive{
   float diameter;
   float lifespan_white = 255.0;
   float lifespan_black = 0.0;
-  color c = color(lifespan,lifespan, lifespan);
+  color c1 = color(lifespan_white,lifespan_white, lifespan_white);
+  color c2 = color(lifespan_black,lifespan_black, lifespan_black);
 
   
   
@@ -25,14 +26,14 @@ class Explosive{
     
     //set a to trigger, when the background is black, use this draw
     if(lifespan_white != 0 && blackwhiteSwitch){
-      fill(c);
+      fill(c1);
       //noFill();
-      stroke(c);
+      stroke(c1);
       ellipse(xpos,ypos,diameter,diameter);
       xpos += xspeed;
       ypos += yspeed;
       lifespan_white = lifespan_white - 2.0; // adjust here to get the fade time
-      this.setColor(color(lifespan_white,lifespan_white,lifespan_white));
+      this.setColor1(color(lifespan_white,lifespan_white,lifespan_white));
       this.bounce();
     }
      else{
@@ -43,14 +44,14 @@ class Explosive{
   
   //set a to trigger, when the background is white, use this draw
   if(lifespan_black != 255 && blackwhiteSwitch == false){
-      fill(c);
+      fill(c2);
       //noFill();
-      stroke(c);
+      stroke(c2);
       ellipse(xpos,ypos,diameter,diameter);
       xpos += xspeed;
       ypos += yspeed;
       lifespan_black = lifespan_black + 2.0; // adjust here to get the fade time
-      this.setColor(color(lifespan_black,lifespan_black,lifespan_black));
+      this.setColor2(color(lifespan_black,lifespan_black,lifespan_black));
       this.bounce();
     }
      else{
@@ -73,8 +74,12 @@ class Explosive{
   }
   
   
-  void setColor(color val){
-    c = val;
+  void setColor1(color val){
+    c1 = val;
+  }
+  
+  void setColor2(color val){
+    c2 = val;
   }
   
   float getlife(){
