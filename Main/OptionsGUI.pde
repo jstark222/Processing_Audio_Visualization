@@ -93,7 +93,6 @@ public void act2Button_click(GButton source, GEvent event) {
    //println(textfield1.getText());
   if (event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
         bSensitive = Integer.parseInt(textfield1.getText());
-       println("Sensitivity");
    }
 }
 public void actButton_click(GButton source, GEvent event) {
@@ -126,7 +125,7 @@ public void createOptionsGUI(){
   textfield1.addEventHandler(this, "textfield1_change1");
   //The label2, ball speed is deleted
   label3 = new GLabel(this, (w-400), h-450, 124, 30);
-  label3.setText("Number of Balls");
+  label3.setText("Number of Bubbles");
   label3.setFont(ARIAL);
   label3.setTextBold();
   label3.setOpaque(false);
@@ -146,7 +145,7 @@ public void createOptionsGUI(){
   act2Button.fireAllEvents(true);
   checkbox1 = new GCheckbox(this, (w-220), (h-180), 150, 40);
   checkbox1.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox1.setText("  Fill Balls");
+  checkbox1.setText("  Fill Bubbles");
   checkbox1.setTextBold();
   checkbox1.setOpaque(false);
   checkbox1.addEventHandler(this, "checkbox1_clicked1");
@@ -158,13 +157,13 @@ public void createOptionsGUI(){
   togGroup1 = new GToggleGroup();
   noBack_radio = new GOption(this, (w-375), h-275, 140, 30);
   noBack_radio.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  noBack_radio.setText(" No Background");
+  noBack_radio.setText("  None");
   noBack_radio.setTextBold();
   noBack_radio.setOpaque(false);
   noBack_radio.addEventHandler(this, "noBackg_clicked1");
   black = new GOption(this, (w-375), h-250, 140, 30);
   black.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  black.setText(" Black");
+  black.setText("  Black");
   black.setTextBold();
   black.setOpaque(false);
   black.addEventHandler(this, "black_clicked1");
@@ -176,7 +175,7 @@ public void createOptionsGUI(){
   white.addEventHandler(this, "white_clicked1");
   strobe = new GOption(this, (w-375), h-200, 140, 30);
   strobe.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  strobe.setText(" Strobe");
+  strobe.setText("  Strobe");
   strobe.setTextBold();
   strobe.setOpaque(false);
   strobe.addEventHandler(this, "strobe_clicked1");
@@ -199,13 +198,13 @@ public void createOptionsGUI(){
   label5.setOpaque(false);
   checkbox7 = new GCheckbox(this, (w-220), h-275, 140, 30);
   checkbox7.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox7.setText("  Balls");
+  checkbox7.setText("  Bubbles");
   checkbox7.setTextBold();
   checkbox7.setOpaque(false);
   checkbox7.addEventHandler(this, "checkbox7_clicked1");
   checkbox8 = new GCheckbox(this, (w-220), h-250, 140, 30);
   checkbox8.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox8.setText("  Exploding balls");
+  checkbox8.setText("  Explosions");
   checkbox8.setTextBold();
   checkbox8.setOpaque(false);
   checkbox8.addEventHandler(this, "checkbox8_clicked1");
@@ -217,7 +216,7 @@ public void createOptionsGUI(){
   checkbox9.addEventHandler(this, "checkbox9_clicked1");
   checkbox10 = new GCheckbox(this, (w-220), h-200, 140, 30);
   checkbox10.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox10.setText("  Waveform Melt");
+  checkbox10.setText("  Infinite Effect");
   checkbox10.setTextBold();
   checkbox10.setOpaque(false);
   checkbox10.addEventHandler(this, "checkbox10_clicked1");
@@ -250,6 +249,7 @@ public void enableOptionsGUI(){
   textfield1.setVisible(true);
   textfield3.setVisible(true);
   actButton.setVisible(true);
+  act2Button.setVisible(true);
 
   checkbox1.setVisible(true);
   noBack_radio.setVisible(true);
@@ -267,6 +267,7 @@ public void disableOptionsGUI(){
  textfield1.setEnabled(false);
   textfield3.setEnabled(false);
   actButton.setEnabled(false);
+  act2Button.setEnabled(false);
  
   checkbox1.setEnabled(false);
 
