@@ -67,15 +67,21 @@ void drawRibbon() {
     line(space * i, h, space * i, h - lineLength);
   }
   */
+  colorMode(HSB);
   strokeWeight(1);
   stroke(255, 0, 0);
   
-  for (int i = w/4; i < player.mix.size()-1 + w/5; i++) {
-    stroke(i-i/2, i/2, i/50);
-    line(i, h/3 - 50 + player.mix.get(i - w/5) * 50, i + 1, h/3 + player.mix.get(i+1 - w/5));
-    stroke(i-20, i-30, 255);
-    line(i, h/3 + player.mix.get(i+1 - w/5), i + 1, h/3 + player.mix.get(i - w/5) * 50);
+  for (int i = 0; i < player.mix.size() - 1; i++) {
+    stroke(map(hueChange + i, 0, 1024, 0, 255), 255, 255);
+    if (keyPressed  &&  key == 'k') { println(player.mix.size()); }  
+    //stroke(i-i/2, i/2, i/50);
+    line(i + w/4, h/3 - 50 + player.mix.get(i) * 50, i + w/4 + 1, h/3 + player.mix.get(i+1));
+    stroke(map(hueChange + i, 0, 1024, 0, 255), 255, 255);
+    //stroke(i-20, i-30, 255);
+    line(i + w/4, h/3 + player.mix.get(i), i + w/4 + 1, h/3 + player.mix.get(i) * 50);
   }
+  
+  colorMode(RGB);
   
   /*background(0);
   fft.forward(audioPlayer[currentSong].mix);

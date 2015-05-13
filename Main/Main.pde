@@ -18,6 +18,8 @@ int w = 0;
 int h = 0;
 boolean optionBool = true;
 boolean fillTrue = false;
+int hueChange = 0;
+boolean hueToggle = false;
 
 
 
@@ -86,6 +88,11 @@ void draw() {
       }
       
       if (!initSongSelected  &&  showOptions) { drawRectangle(); }
+      
+      if (hueChange == 0) { hueToggle = false; }
+      else if (hueChange == 255) { hueToggle = true; }
+      if (hueToggle) { hueChange--; }
+      else { hueChange++; }
       break;
     case 2: //Options Menu
       background(0);
