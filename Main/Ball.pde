@@ -57,7 +57,7 @@ class Ball{
   
   void explor(){
     for (int i =0; i<c4.length;i++)
-      c4[i].display();
+      try { c4[i].display(); } catch (Exception e) { }
   }
   
   void setColor(color val){
