@@ -130,7 +130,7 @@ public void createOptionsGUI(){
   actButton.setTextBold();
   actButton.addEventHandler(this, "actButton_click");
   actButton.fireAllEvents(true);
-  checkbox1 = new GCheckbox(this, (w-220), (h-350), 150, 40);
+  checkbox1 = new GCheckbox(this, (w-220), (h-180), 150, 40);
   checkbox1.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
   checkbox1.setText("  Fill Balls");
   checkbox1.setTextBold();
