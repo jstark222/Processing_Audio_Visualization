@@ -69,7 +69,7 @@ void drawExplosion(){
     }
     for(int i = 0; i < b3.size(); i++){
        //b[b3.get(i)].create_explor();
-       b.get(b3.get(i)).create_explor();
+       try { b.get(b3.get(i)).create_explor(); } catch (Exception e) { }
     }   
     explotion = true;
     create_explotion = false;
@@ -78,7 +78,7 @@ void drawExplosion(){
   if(explotion == true){
     for(int i= 0; i < b3.size(); i++){
        //b[b3.get(i)].explor();
-       b.get(b3.get(i)).explor();
+       try { b.get(b3.get(i)).explor(); } catch (Exception e) { }
        //b.remove(b3.get(i));
     }  
   }

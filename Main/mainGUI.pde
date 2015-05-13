@@ -107,6 +107,7 @@ public void clearButton_click(GButton source, GEvent event){
     //drawRectangle();
     player.pause();
     currentSong = 0;
+    slider1.setValue(0);
     songLoaded = false;
     initSongSelected = false;
   }
