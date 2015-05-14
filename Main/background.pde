@@ -1,4 +1,4 @@
-//This Function Draws the Disco Background
+//This sketch contains all code related to selecting and displaying backgrounds
 
 int ptsW, ptsH;
 
@@ -36,7 +36,7 @@ void BackgroundStrobe () {
   }
   else
   {
-    background(233);
+    background(255);
  
   } 
    
@@ -48,6 +48,7 @@ void BlackBackground(){
   
 }
 void WhiteBackground(){
+  blackwhiteSwitch = false;
  background(255); 
   
 }

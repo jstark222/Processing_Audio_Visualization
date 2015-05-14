@@ -1,3 +1,5 @@
+//This sketch contains initialization functions and conditional cases for drawing backgrounds, effects, and controlling beat sensitivity
+
 import ddf.minim.analysis.*;    //Provides FFT
 
 BeatDetect beat;
@@ -14,10 +16,10 @@ boolean create_explotion = false;
 boolean star_create = false;
 ArrayList<Ball> b = new ArrayList<Ball>();
 ArrayList<Integer> b3 = new ArrayList<Integer>();
-Meteor star;
 boolean starActive = false;//Set true to see star 
 int bSensitive = 50;
-int backgroundEffect = 3;
+int backgroundEffect = 0;
+
 
 
 void beatInitializer(){
@@ -32,8 +34,9 @@ void beatInitializer(){
 
 void mainDisplayInit() {  
   //loadSong();
- RainbowInit();
+  RainbowInit();
   ballinit();
+
  
   DiscoInit();
  
@@ -56,7 +59,7 @@ void mainDisplayDraw() {
       BlackBackground();
       break;
     case 1://No Background
-      
+      if (showOptions) { drawRectangle(); }
       break;
     case 2://White Background
       WhiteBackground();
@@ -68,46 +71,39 @@ void mainDisplayDraw() {
       BackgroundDiscoDraw();
       DiscoDraw();
       break;
-
      
   }
 
   
-  switch(effect)//Switch for choosing what effects to draw USE EVERY PERMUTATION
+  if(checkbox10.isSelected())//Rainbow Checked
   {
-    case 0://Default
-      balldraw();
-      break;
-    case 1:
-      
-       balldraw();
-      break;
-    case 2:
-      BackgroundDiscoDraw();
-      balldraw();
-      DiscoDraw();
-      break;
-    case 3:
-     
-      BackgroundDiscoDraw();
-      balldraw();
-     
-      break;
-    case 4:
-      //BlackBackground();
-      drawExplosion();
-      drawStar();
-     
-      break;
-    case 5:
+    
       drawRainbow();
     
-      break;
-    case 6:
+  }
+  
+  if(checkbox7.isSelected())//ball draw checked
+  {
     
-      break;
-  } 
- drawRectangle();
+     balldraw(); 
+    
+  }
+  
+  if(checkbox8.isSelected())//Explosion draw
+  {
+    
+     drawExplosion(); 
+    
+  }
+  
+  if(checkbox9.isSelected())//Draw Ribbon
+  {
+     drawRibbon(); 
+    
+  }
+  
+
+ //drawRectangle();
 
 }
 
@@ -117,18 +113,20 @@ void triggers() {
   if (beat.isKick()) { kickCounter++; ballsetspeed(); } //Call function
   if (beat.isHat()) { hatCounter++; 
       
-      if(starActive)
-        setStar();
+//      if(starActive)
+//        setStar();
   
   } 
   if (beat.isSnare()) { 
     snareCounter++; 
     create_explotion = true;
+    if(strobe_enable == true){
       if (snareCounter % 2 == 0) {
          if(blackwhiteSwitch){blackwhiteSwitch = false;}
         else{blackwhiteSwitch = true;}
       
       } //Call function
+    }
   }
   if (kickCounter % 5 == 0) {
       

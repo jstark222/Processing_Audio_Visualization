@@ -1,3 +1,5 @@
+//This sketch contains all code related to the display and functionality of the main user interface
+
 import g4p_controls.*;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -36,6 +38,8 @@ GSlider slider1;
 //Booleans control toggle of displayed Controls/ProgressBar
 boolean showControls = true;
 boolean showProgress = true;
+boolean showOptions = true;
+boolean stop = false;
 
 
 
@@ -46,15 +50,29 @@ JFileChooser file_chooser = new JFileChooser();
 
 public void playButton_click(GButton source, GEvent event) { 
   if (source == playButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
- 
-    if (!player.isPlaying()  &&  initSongSelected) player.play();  //Self-evident, but the play() method simply starts playing the loaded fileplayer.play();
+    if (!player.isPlaying()  &&  initSongSelected  &&  (player.position() >= player.length() - 1000)) {
+      stop = false;
+      loadSong();
+      player.play();
+    
+    }
+    else if (!player.isPlaying()  &&  initSongSelected) {
+      stop = false;
+      player.play();
+    }
+    else if (player.isPlaying()) {
+      player.pause();
+    }
   }
 } 
 
 public void stopButton_click(GButton source, GEvent event) {
   
   if (source == stopButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
+    stop = true;
     player.pause();
+    player.cue(player.length());
+    
   }
 } 
 
@@ -69,34 +87,29 @@ public void songButton_click(GButton source, GEvent event) {
 public void optionsButton_click(GButton source, GEvent event) { 
   
   if (source == optionsButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-      if(optionBool)
+      if(!optionBool)
       {
-         enableOptionsGUI();
-        optionBool = false;  
+        enableOptionsGUI();
+        optionBool = true;
       }
       else
       {
          disableOptionsGUI(); 
-         optionBool = true;
-         
+         optionBool = false;
+         if (backgroundEffect == 1) { background(0); }
       }
 
   }
 } 
 
-public void slider1_click(GSlider source, GEvent event) { 
-  if (source == slider1  &&  mRelease) {  //This is a work-around for the double button clicked effect
-    player.cue(int(map(slider1.getValueF(), 0.0, 1.0, 0, player.length())));
-  }
-  
-  
-} 
 public void clearButton_click(GButton source, GEvent event){
   if (source == clearButton  &&  event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
     fileName.clear();
-   
+    background(0);
+    //drawRectangle();
     player.pause();
     currentSong = 0;
+    slider1.setValue(0);
     songLoaded = false;
     initSongSelected = false;
   }
@@ -107,13 +120,16 @@ class MenuActionListener implements ActionListener {
     {
         if(showControls)
         {
-            background(0);
+            if (!initSongSelected) { background(0); }
             disableGui();
+            //disableOptionsGUI();
             showControls = false;
         }
         else
         {
             enableGui();
+            //drawRectangle();
+            //enableOptionsGUI();
             showControls = true;
           
         }
@@ -123,7 +139,7 @@ class MenuActionListener implements ActionListener {
     {
         if(showProgress)
         {
-            background(0);
+            if (!initSongSelected) { background(0); }
             disableProgressBar();
             showProgress = false;
         }
@@ -145,12 +161,31 @@ class MenuActionListener implements ActionListener {
     }
     else if(e.getActionCommand() == "Play Previous Song")
     {
-      if (currentSong > 0) {
+      if ((player.position() >= player.length() - 1000)  &&  currentSong == fileName.size() - 1) {
+        loadSong();
+        player.play();
+      }
+      else if (currentSong > 0) {
         currentSong--;
         player.pause();
         loadSong();
         //player.play();
       }
+    }
+    else if(e.getActionCommand() == "Show/Hide Options")
+    {
+      if(showOptions)
+      {
+        disableOptionsGUI();
+        showOptions = false;
+        if (!initSongSelected  ||  backgroundEffect == 1) { background(0); }
+      }
+      else
+     {
+        enableOptionsGUI();
+        showOptions = true;
+        if (!initSongSelected) { drawRectangle(); }
+     } 
     }
     else if(e.getActionCommand() == "Exit")
     {
@@ -170,11 +205,11 @@ public void enableGui(){
  playButton.setVisible(true);
  stopButton.setVisible(true);
  songButton.setVisible(true);
- optionsButton.setVisible(true);
+ //optionsButton.setVisible(true);
  clearButton.setVisible(true);
  playButton.setEnabled(true);
  stopButton.setEnabled(true);
- optionsButton.setEnabled(true);
+ //optionsButton.setEnabled(true);
  songButton.setEnabled(true); 
  clearButton.setEnabled(true);
 }
@@ -183,15 +218,16 @@ public void disableGui(){
  playButton.setVisible(false);
  stopButton.setVisible(false);
  songButton.setVisible(false);
- optionsButton.setVisible(false);
+ //optionsButton.setVisible(false);
  clearButton.setVisible(false);
  playButton.setEnabled(false);
  stopButton.setEnabled(false);
- optionsButton.setEnabled(false);
+ //optionsButton.setEnabled(false);
  songButton.setEnabled(false);
  clearButton.setEnabled(false);
   
 }
+
 
 public void enableProgressBar(){
   slider1.setVisible(true);
@@ -233,28 +269,27 @@ public void createGUI(){
   clearButton.addEventHandler(this, "clearButton_click");
   clearButton.fireAllEvents(true);
   
-  songButton = new GButton(this, (w-375), h-70, 100, 30);
+  songButton = new GButton(this, (575), h-70, 100, 30);
   songButton.setText("Add Songs");
   songButton.setTextBold();
   songButton.addEventHandler(this, "songButton_click");
   songButton.fireAllEvents(true);
   
-  optionsButton = new GButton(this, w-225, h-70, 100, 30);
-  optionsButton.setText("Options");
-  optionsButton.setTextBold();
-  optionsButton.addEventHandler(this, "optionsButton_click");
-  optionsButton.fireAllEvents(true);
+ // optionsButton = new GButton(this, w-225, h-70, 100, 30);
+ // optionsButton.setText("Options");
+ // optionsButton.setTextBold();
+ // optionsButton.addEventHandler(this, "optionsButton_click");
+ // optionsButton.fireAllEvents(true);
   
 }
 
 void drawSongSlider(){
-  slider1 = new GSlider(this, 2, (h - 50), width, 53, 10.0);
+  slider1 = new GSlider(this, 2, (h - 50), w - 2, 53, 10.0);
   slider1.setShowLimits(false);
   slider1.setTextOrientation(G4P.ORIENT_LEFT);
   slider1.setLimits(0.0, 0.0, 1.0);
   slider1.setNumberFormat(G4P.DECIMAL, 2);
   slider1.setOpaque(false);
-  slider1.addEventHandler(this, "slider1_click");
   showProgress = true;
 }
 void mouseReleased(){
@@ -286,6 +321,10 @@ void mousePressed() {
     menuItem2.addActionListener(new MenuActionListener());
     popup.add(menuItem2);
     
+    JMenuItem menuItem6 = new JMenuItem("Show/Hide Options");
+    menuItem6.addActionListener(new MenuActionListener());
+    popup.add(menuItem6);
+    
     JMenuItem menuItem3 = new JMenuItem("Play Next Song");
     menuItem3.addActionListener(new MenuActionListener());
     popup.add(menuItem3);
@@ -309,36 +348,6 @@ void mousePressed() {
 
 }
 
-//FOR TESTING PURPOSES ONLY  DELETE ME!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//==================================================================
-void keyPressed() {
-  switch(key) {
-    case '1':
-      //mode = 1;
-      addme++;
-      break;
-    case '2':
-      mode = 2;
-      break;
-    case '3':
-      mode = 3;
-      break;
-    case 'q':
-      effect = 1;
-      break;
-    case 'w':
-      effect = 2;
-      break;
-    case 'e':
-      effect = 3;
-      break;  
-    case 's':
-      sensitivityInput = "999";
-      beat.setSensitivity(int(sensitivityInput));
-      println("Sensitivity is: " + sensitivityInput);
-  }
-}
-//====================================================================
 
 //FILE OPENER
 //====================================================================
@@ -461,3 +470,13 @@ class ExtensionFileFilter extends FileFilter {
   }
 }
 //=======================================================================
+
+void mouseClicked() {  //This implements slider click functionality; this was implemented because event handlers for the slider were causing audio hiccups.
+  if (mouseX >= 2  &&  mouseX <= width  &&  initSongSelected) {
+    if (mouseY > (h - 30)  &&  mouseY < (h - 18)  &&  player.isPlaying()) {
+      float mx = map(mouseX, 0, width, 0.0, 1.0);
+      slider1.setValue(map(mouseX, 0, width, 0, 1.0));
+      player.cue(int(map(mx, 0.0, 1.0, 0, player.length())));
+    }
+  }
+}

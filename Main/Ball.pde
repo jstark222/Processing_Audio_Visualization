@@ -1,9 +1,12 @@
-class Ball{
+//This sketch contains all code related to drawing the "Bubble" effects to the screen
+
+// initial the ball
+class Ball{ 
   float xpos,ypos;
   float xspeed, yspeed;
   float diameter;
   color c = color(0,0,250,90);
-  Explosive[] c4 = new Explosive[10];
+  Explosive[] c4 = new Explosive[10]; // let each ball has ten explosion little ball
   
   Ball (){
     //set diameter before position
@@ -27,13 +30,15 @@ class Ball{
       noFill();
     }
     stroke(c);
+    strokeWeight(1);
     ellipse(xpos,ypos,diameter,diameter);
     xpos += xspeed;
     ypos += yspeed;
     this.bounce();
   }
   
-   void bounce(){
+  //make the ball can bounce
+   void bounce(){ 
     if (xpos> w-diameter/2) xspeed = -xspeed;
     else if (xpos < diameter/2) xspeed = -xspeed;
     if (ypos > h - diameter/2) yspeed = -yspeed;
@@ -48,15 +53,17 @@ class Ball{
     return ypos;
   }
   
+  //creat 10 explosive little ball
   void create_explor(){
     for (int i =0; i<c4.length;i++){
       c4[i] = new Explosive(this.getX(),this.getY());
     }
   }
   
+  //draw explosion 
   void explor(){
     for (int i =0; i<c4.length;i++)
-      c4[i].display();
+      try { c4[i].display(); } catch (Exception e) { }
   }
   
   void setColor(color val){
@@ -75,6 +82,7 @@ class Ball{
     yspeed = valy;
   }
     
+  //set the ball speed change and according the sound
   void setFast(float speed){
     if (xspeed < 0 && yspeed < 0 && speed < 0){
       xspeed = speed;
