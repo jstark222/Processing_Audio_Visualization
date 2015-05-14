@@ -217,7 +217,7 @@ public void createOptionsGUI(){
   checkbox9.addEventHandler(this, "checkbox9_clicked1");
   checkbox10 = new GCheckbox(this, (w-220), h-200, 140, 30);
   checkbox10.setTextAlign(GAlign.LEFT, GAlign.MIDDLE);
-  checkbox10.setText("  Infinite Effect");
+  checkbox10.setText("  Infinite Mirror");
   checkbox10.setTextBold();
   checkbox10.setOpaque(false);
   checkbox10.addEventHandler(this, "checkbox10_clicked1");
@@ -229,6 +229,7 @@ public void enableOptionsGUI(){
   textfield1.setEnabled(true);
   textfield3.setEnabled(true);
   actButton.setEnabled(true);
+  act2Button.setEnabled(true);
  
   checkbox1.setEnabled(true);
 
