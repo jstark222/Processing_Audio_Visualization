@@ -1,3 +1,5 @@
+//This sketch contains all code related to drawing the "Bubble" effects to the screen
+
 class Ball{
   float xpos,ypos;
   float xspeed, yspeed;

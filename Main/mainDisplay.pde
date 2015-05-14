@@ -1,3 +1,5 @@
+//This sketch contains initialization functions and conditional cases for drawing backgrounds, effects, and controlling beat sensitivity
+
 import ddf.minim.analysis.*;    //Provides FFT
 
 BeatDetect beat;

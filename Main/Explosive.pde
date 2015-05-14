@@ -1,3 +1,5 @@
+//This sketch contains all code related to triggering and drawing the "Explosions" effect to the screen
+
 class Explosive{
   float xpos,ypos;
   float xspeed, yspeed;

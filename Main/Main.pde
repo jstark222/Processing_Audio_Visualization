@@ -1,5 +1,12 @@
+//Document mixture of effects.
+//README file with user documentation
+//Front page user documentation
+//Comments in code
+//Clean up superfluous code
+//Write and print out contribution report
+
+
 //Main file to launch all other code
-//String fileName = "..\\..\\Music\\The Times.mp3";  //The default location the loadFile() method looks is in the sketch's data folder; this moves up two directories and into the Music folder; this will error if your directory structure is different from the one on GitHub.
 import ddf.minim.*;             //Provides Minim and AudioInput
 import ddf.minim.analysis.*;    //Provides FFT
 import g4p_controls.*;
@@ -10,9 +17,9 @@ AudioPlayer player;  //Provides a self-contained way of playing a sound file by 
 
 
 
-ArrayList<String> fileName = new ArrayList(1);
-String songName;
-int currentSong = 0, mode = 1, hueVal = 0;
+ArrayList<String> fileName = new ArrayList(1);  //This is effectively our "queue". Holds a list of file paths that are loaded into the minim object
+String songName;  //Name of the current song
+int currentSong = 0, mode = 1, hueVal = 0;  //Values for current song, playback mode, and hue (hueVal is related to Infinite Mirror effect
 Boolean initTrigger = true, songLoaded = false, initSongSelected = false;
 int w = 0;
 int h = 0;
@@ -33,15 +40,13 @@ void setup() {
   w = displayWidth;
   h = displayHeight;
   background(0);
-  //w = 800;
-  //h = 800;
   size(w, h, JAVA2D);
   textSize(16);
   mainInitializer();
   
 }
 
-void mainInitializer(){
+void mainInitializer(){  //Initialize minim and create & display main GUI and options GUI
   minim = new Minim(this);
   background(255);
   createOptionsGUI();
@@ -57,8 +62,8 @@ void mainInitializer(){
 
 void draw() {
   switch(mode) {
-    case 1:
-      if (initSongSelected) {
+    case 1:  //Song is being played
+      if (initSongSelected) {  //Draw song name and queue information (and draw pause, if song is paused)
         mainDisplayDraw();
         songName = fileName.get(currentSong).substring(fileName.get(currentSong).lastIndexOf('\\') + 1, fileName.get(currentSong).lastIndexOf('.'));
         colorMode(HSB);
@@ -73,23 +78,23 @@ void draw() {
         hueVal = (hueVal > 255) ? 0 : hueVal + 1;
         
         
-        if ((player.position() >= player.length() - 1000)  &&  currentSong < fileName.size() - 1  &&  !stop) {
+        if ((player.position() >= player.length() - 1000)  &&  currentSong < fileName.size() - 1  &&  !stop) {  //If song has ended and there is another song in the queue, start playing the next song
           slider1.setValue(w - 2);
           currentSong++;
           player.pause();
           loadSong();
           player.play();
         }
-        else if ((player.position() >= player.length() - 1000)  &&  currentSong == fileName.size() -1) {
+        else if ((player.position() >= player.length() - 1000)  &&  currentSong == fileName.size() -1) {  //Else if song has ended but there is not another song in the queue, stop playback and set slider to end
           player.pause();
           slider1.setValue(w - 2);
         }
-        else if (stop) { slider1.setValue(w - 2); }
+        else if (stop) { slider1.setValue(w - 2); }  //Else if user has chosen to stop playback, set slider to end
       }
       
-      if (!initSongSelected  &&  showOptions) { drawRectangle(); }
+      if (!initSongSelected  &&  showOptions) { drawRectangle(); }  //Display the option menu when program starts
       
-      if (hueChange == 0) { hueToggle = false; }
+      if (hueChange == 0) { hueToggle = false; }  //This and the following 3 lines control the shifting coloration of the waveform effect
       else if (hueChange == 255) { hueToggle = true; }
       if (hueToggle) { hueChange--; }
       else { hueChange++; }
@@ -97,7 +102,7 @@ void draw() {
     case 2: //Options Menu
       background(0);
       break;  
-    case 3:
+    case 3:  //Exit program
  
       exit();
       break;

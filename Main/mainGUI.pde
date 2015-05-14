@@ -1,3 +1,5 @@
+//This sketch contains all code related to the display and functionality of the main user interface
+
 import g4p_controls.*;
 import java.io.File;
 import javax.swing.JFileChooser;

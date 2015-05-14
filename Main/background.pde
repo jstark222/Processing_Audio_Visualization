@@ -1,4 +1,4 @@
-//This Function Draws the Disco Background
+//This sketch contains all code related to selecting and displaying backgrounds
 
 int ptsW, ptsH;
 

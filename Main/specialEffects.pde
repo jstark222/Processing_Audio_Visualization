@@ -1,3 +1,5 @@
+//This sketch contains code related to controlling the number, speed, direction, and color of the bubbles and explosion effect
+
 //Special Effects library
 import java.util.ArrayList;
 float kickSize, snareSize, hatSize;

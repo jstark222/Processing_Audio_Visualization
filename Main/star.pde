@@ -1,5 +1,3 @@
-//Displays histograms of random values
-
 float positionX,positionY,posX,posY;
 float star_speed = 1;
 float[] multi = new float [10];
