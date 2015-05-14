@@ -1,4 +1,6 @@
-//Provides a self-contained way of playing a sound file by streaming it from disk. It provides methods for playing & looping the file, as well as methods for setting the position in the file and looping a section of the file.
+//This sketch contains all code related to drawing the "Infinite Mirror" effect
+
+
 FFT fft;             //FFT = Fast Fourier Transform - performs a Fourier Transform on audio data to generate a frequency spetrum
 
 int wdth;  //This value is used to stretch the width of the spectrum display across the window
@@ -15,7 +17,7 @@ void RainbowInit() {
 }
 
 
-void drawRainbow() {
+void drawRainbow() {  //This function handles the "Infinite Mirror" effect
   //background(0);
   
   stroke(255);
@@ -48,7 +50,7 @@ void drawRainbow() {
   rHeight = h * 0.99;
 }
 
-void drawRibbon() {
+void drawRibbon() {  //This function handles the "Waveform" effect
   int lineLength, thickness = 5, space = thickness + 1;
   
   strokeWeight(thickness);
@@ -61,12 +63,7 @@ void drawRibbon() {
     if (fft.getBand(i) > maxVal) maxVal = fft.getBand(i);
     else if (fft.getBand(i) < minVal) minVal = fft.getBand(i); 
   }
-  /*
-  for (int i = 0; i < fft.specSize(); i++) {
-    lineLength = (int) map(fft.getBand(i), 0, maxVal, 0, 3 * h / 4);
-    line(space * i, h, space * i, h - lineLength);
-  }
-  */
+
   colorMode(HSB);
   strokeWeight(1);
   stroke(255, 0, 0);
@@ -82,21 +79,5 @@ void drawRibbon() {
   }
   
   colorMode(RGB);
-  
-  /*background(0);
-  fft.forward(audioPlayer[currentSong].mix);
-  stroke(0, 0, 255);
-  
-  for (int i = 0; i <ifft.specSize(); i++) {
-    line(i, height, i, height - fft.getBand(i) * 4);
-    line(i + width/2, height, i + width/2, height - fft.getBand(i) * 4);
-  }
-  
-  stroke(255);
-  
-  for (int i = 0; i < audioPlayer.bufferSize()-1; i++) {
-    line(i, 50 + audioPlayer.left.get(i) * 50, i + 1, 50 + audioPlayer.left.get(i+1) * 50);
-    line(i, 150 + audioPlayer.right.get(i) * 50, i + 1, 150 + audioPlayer.right.get(i+1) * 50);
-  }*/
 }
 
