@@ -84,9 +84,6 @@ class Explosive{
     c2 = val;
   }
   
-  float getlife(){
-    return lifespan;
-  }
   
   float getSpeedX(){
     return xpos;
