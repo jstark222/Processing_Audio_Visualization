@@ -1,16 +1,18 @@
 //This sketch contains all code related to triggering and drawing the "Explosions" effect to the screen
 
+//initial the explosive
 class Explosive{
   float xpos,ypos;
   float xspeed, yspeed;
   float diameter;
   float lifespan_white = 255.0;
   float lifespan_black = 0.0;
+  //set black and white color
   color c1 = color(lifespan_white,lifespan_white, lifespan_white);
   color c2 = color(lifespan_black,lifespan_black, lifespan_black);
 
   
-  
+  //The explosive will attach to the ball class
   Explosive (float xp, float yp){
     //set diameter before position
     diameter = random(1,8);
@@ -23,9 +25,10 @@ class Explosive{
     
     //set a random color
   }
+  
+  
   void display(){
-    
-    
+
     //set a to trigger, when the background is black, use this draw
     if(lifespan_white != 0 && blackwhiteSwitch){
       fill(c1);

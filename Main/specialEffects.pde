@@ -3,17 +3,16 @@
 //Special Effects library
 import java.util.ArrayList;
 float kickSize, snareSize, hatSize;
+//set initial ball number
 int NUMBALLS = 200;
 
-
-boolean frozen = false;
+//set initial ball speed
 float speed = 20.0;
-
+//this value will hold how many ball you want show
 int num_show;
 
 void ballinit(){
   for (int i =0; i<NUMBALLS;i++){
-    //b[i] = new Ball();
     b.add(new Ball());
   }
   num_show = NUMBALLS;
@@ -22,7 +21,6 @@ void ballinit(){
 void ballreInit(){
  b.clear();
  for (int i =0; i<num_show;i++){
-    //b[i] = new Ball();
     b.add(new Ball());
   }
  
@@ -37,6 +35,8 @@ void balldraw(){
       b.get(i).display();
 }
 
+
+//set the random number of ball change speed, and change the color
 void ballsetspeed(){
   ArrayList<Integer> b2 = new ArrayList<Integer>();
     
@@ -47,7 +47,6 @@ void ballsetspeed(){
       b2.add((int) random(0,b.size()));
     }
     for(int i = 0; i < b2.size(); i++){
-       //b[b2.get(i)].setFast(newSpeed);
        b.get(b2.get(i)).setFast(newSpeed);
     }
    changeColor();
@@ -55,13 +54,12 @@ void ballsetspeed(){
 
 
 
-  
+//make the explosion happend
 void drawExplosion(){
  rect(0,0,width,height);
   
   for (int i =0; i<b.size();i++)
   {
-    //b[i].display();
     b.get(i).display();
   }
   if( create_explotion == true){
@@ -70,7 +68,6 @@ void drawExplosion(){
       b3.add((int) random(0,b.size()));
     }
     for(int i = 0; i < b3.size(); i++){
-       //b[b3.get(i)].create_explor();
        try { b.get(b3.get(i)).create_explor(); } catch (Exception e) { }
     }   
     explotion = true;
@@ -79,12 +76,10 @@ void drawExplosion(){
   
   if(explotion == true){
     for(int i= 0; i < b3.size(); i++){
-       //b[b3.get(i)].explor();
        try { b.get(b3.get(i)).explor(); } catch (Exception e) { }
-       //b.remove(b3.get(i));
     }  
   }
-  //println(b3.size());
+ 
   if (b3.size() >= 50) b3.clear(); 
   
 }
@@ -100,29 +95,6 @@ void changeColor(){
 }
   
 
-void move_left(){
-  int ran_num = (int) random(0,num_show);
-  for (int i =0; i<ran_num;i++){
-    //b[i].setSpeed(b[i].getSpeedX()-0.5, b[i].getSpeedY()-0.5);
-    b.get(i).setSpeed(-speed,0.0);
-   }
-}
-  
-void move_right(){
-  int ran_num = (int) random(0,num_show);
-  for (int i =0; i<ran_num;i++){
-    //b[i].setSpeed(b[i].getSpeedX()-0.5, b[i].getSpeedY()-0.5);
-     b.get(i).setSpeed(speed,0.0);
-   }
-}
-   
-void move_up(){
-  int ran_num = (int) random(0,num_show);
-  for (int i =0; i<ran_num;i++){
-    //b[i].setSpeed(b[i].getSpeedX()-0.5, b[i].getSpeedY()-0.5);
-     b.get(i).setSpeed(0.0,-speed);
-   }
-}
 
 
 

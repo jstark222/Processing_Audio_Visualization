@@ -36,7 +36,7 @@ void mainDisplayInit() {
   //loadSong();
   RainbowInit();
   ballinit();
-  starInit();
+
  
   DiscoInit();
  
