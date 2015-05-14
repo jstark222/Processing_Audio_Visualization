@@ -100,7 +100,6 @@ public void act2Button_click(GButton source, GEvent event) {
 public void actButton_click(GButton source, GEvent event) {
    //println(textfield1.getText());
   if (event == GEvent.CLICKED) {  //This is a work-around for the double button clicked effect
-        println("Number of Balls");
         num_show = Integer.parseInt(textfield3.getText());
         ballreInit();
    }
@@ -291,6 +290,7 @@ public void disableOptionsGUI(){
   textfield1.setVisible(false);
   textfield3.setVisible(false);
   actButton.setVisible(false);
+  act2Button.setVisible(false);
 
   checkbox1.setVisible(false);
   noBack_radio.setVisible(false);

@@ -98,6 +98,22 @@ void draw() {
       else if (hueChange == 255) { hueToggle = true; }
       if (hueToggle) { hueChange--; }
       else { hueChange++; }
+      
+      if (!initSongSelected) {
+        fill(233);
+        rect(60, 60, 1000, 440);
+        fill(0);
+        text("Click 'Add Song' to choose and start playing a music file.", 100, 100);
+        text("Click 'Play' to toggle between pause/playback of current song.", 100, 140);
+        text("Click 'Stop' to stop playback of current song.", 100, 180);
+        text("Change how responsive effects are with 'Beat Sensitivity': lower values = more sensitive, higher values = less sensitive.", 100, 260);
+        text("Setting a value for 'Number of Bubbles' will determine how many bubbles are displayed when using the 'Bubbles' effect.", 100, 300);
+        text("Right clicking will open a menu to show/hide interface, navigate through song queue, and exit program.", 100, 340);
+        text("Select an option under 'Background' to change what kind of background is displayed.", 100, 420);
+        text("Select any combination of 'Effects' to draw them to the screen.", 100, 460);
+        noFill();
+      }
+      
       break;
     case 2: //Options Menu
       background(0);
